@@ -1,0 +1,1 @@
+This phonegap app is intended to be used as part of a research project testing notifications.
