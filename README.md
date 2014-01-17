@@ -1,1 +1,6 @@
-This phonegap app is intended to be used as part of a research project testing notifications.
+=======
+US-Inventor-Quiz
+================
+
+PhoneGap app that has a US Inventor Quiz
+
