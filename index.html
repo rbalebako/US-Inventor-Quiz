@@ -1,0 +1,48 @@
+<html>
+    <script src="css/source-sans-pro.js"></script>
+    <link href="css/styles.css" rel="stylesheet">
+<body>
+
+<script id="home-tpl" type="text/x-handlebars-template">
+    <div class='header'><h1>Question {{id}}</h1></div>
+
+    <image class='question-image' src='img/{{qimage}}' />
+    <form class='questionclass'>
+    <p>{{qtext}}</p>
+    <ul class='answer-list'></ul>
+    </form>
+    <div id='response'></div>    
+    <span class='footer'>
+    <a href='#qid/{{id}}' class="hidebutton" id="nextbutton">Next</a>
+    </span>       
+    
+</script>
+
+<script id="answer-li-tpl" type="text/x-handlebars-template">
+    {{#.}}
+   <li><input type="radio" name="answer" value="{{this.correct}}" id="{{this.id}}"/><label for="{{this.id}}">{{this.atext}}</label></input></li>
+    {{/.}}
+</script>
+ 
+<script id="thankyou-tpl" type="text/x-handlebars-template">
+    <div class='header'><h1>Thank You </h1></div>
+    <p>You got {{correctAnswers}} out of {{totalQuestions}} questions correct.</p>
+    <p>Thank you for participating in this study.  Tomorrow you will recieve an *notice on your phone* with a link to a short survey about this app.  To complete this study and recieve payment, you must fill out the survey within 1 day of recieving the email.  Thank you! </p>
+     <span class='footer'>
+    </span>    
+</script>
+    
+    
+<script src="js/phonegap.js"></script>
+<script src="lib/jquery-1.8.2.min.js"></script>
+<script src="lib/handlebars.js"></script>
+<script src="js/storage/memory-store.js"></script>
+<script src="lib/iscroll.js"></script>
+<script src="js/HomeView.js"></script>
+<script src="js/ThankYouView.js"></script>
+<script src="js/main.js"></script>
+
+    
+</body>
+</html>
+
