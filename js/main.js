@@ -1,0 +1,117 @@
+var app = {
+
+    registerEvents: function() {
+    var self = this;
+       $(window).on('hashchange', $.proxy(this.getQId, this));
+           
+    // Check of browser supports touch events...
+    if (document.documentElement.hasOwnProperty('ontouchstart')) {
+        // ... if yes: register touch event listener to change the "selected" state of the item
+        $('body').on('touchstart', 'a', function(event) {
+            $(event.target).addClass('tappable-active');
+        });
+        $('body').on('touchend', 'a', function(event) {
+            $(event.target).removeClass('tappable-active');
+        });
+    } else {
+        // ... if not: register mouse events instead
+        $('body').on('mousedown', 'a', function(event) {
+            $(event.target).addClass('tappable-active');
+        });
+        $('body').on('mouseup', 'a', function(event) {
+            $(event.target).removeClass('tappable-active');
+        });
+    }
+               
+},
+    myLog : function(functionname, message1, message2) {
+        console.log(this.ID + ", " + functionname +", " +message1, + ", " + message2 +  Math.round(new Date().getTime() / 1000) );
+        
+    },
+    
+    
+    showAlert: function (message, title) {
+        this.alertShown++;
+        if (navigator.notification) {
+            navigator.notification.alert(message, null, title, 'OK');
+        } else {
+            alert(title ? (title + ": " + message) : message);
+        }
+    },
+    
+    getCondition: function(){
+        var min =0;
+        var max=3;       
+        this.condition = Math.floor(Math.random() * (max - min + 1) + min);
+        this.myLog("getCondition set " + this.condition);
+    },
+    
+    checkCondition: function(currentPlace) {
+        if (this.alertShown>0) {
+            return;
+        }
+        if ((this.condition==0 && currentPlace=='begin') ||
+            (this.condition==1 && currentPlace=='middle') ||
+            (this.condition==2 && currentPlace=='end')
+           ) {
+           
+            this.showAlert("This is a placeholder for a warning.", "Data will be shared");
+            this.myLog("checkCondition", "condition" + this.condition, "currentPlace " + currentPlace );
+        }
+
+        
+    },
+    
+      getQId: function() {
+        var self = this;
+        var qidMatch = /^#qid\/(\d{1,})/;
+        var hash = window.location.hash;
+
+        // if we haven't clicked next, we should be on first page
+        if (!hash) {
+            this.qid=1;
+            this.checkCondition('begin');
+        }
+        var match = hash.match(qidMatch);
+        if (match && match.length>1 && Number(match[1])) {
+            this.qid = Number(match[1])+1;
+             this.myLog("getQId", "on question " + this.qid, " toal question " + this.store.totalQuestions() );
+       
+            // if we are on last question, we should go to thank you page
+            if (this.qid > this.store.totalQuestions()) {
+                this.checkCondition('end');
+                $('body').html(new ThankYouView(this.store).render().el);
+                return;
+            }  
+            this.checkCondition('middle');
+             
+        }
+        else {
+            this.myLog("getQId", "error with hash not matching ", "match: " + match + "hash: " + hash);
+        }
+          
+          // use id to go to next page
+       // this.store = new MemoryStore(function() {
+                $('body').html(new HomeView(self.store, self.qid).render().el);
+         //   }); 
+        
+    },
+    
+   
+    initialize: function() {
+        this.alertShown=0;
+        this.getCondition();
+        var self = this;
+        this.registerEvents();
+        this.store = new MemoryStore(function() {
+            self.getQId();
+        });
+        this.thankYouTpl = Handlebars.compile($("#thankyou-tpl").html());
+    }
+
+};
+
+app.initialize();
+
+
+
