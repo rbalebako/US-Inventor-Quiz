@@ -3,6 +3,9 @@ var app = {
     registerEvents: function() {
     var self = this;
        $(window).on('hashchange', $.proxy(this.getQId, this));
+       
+       // $("#welcome").submit, $.proxy(this.setID($( "input:first" ).val(), this));
+
            
     // Check of browser supports touch events...
     if (document.documentElement.hasOwnProperty('ontouchstart')) {
@@ -24,8 +27,15 @@ var app = {
     }
                
 },
+              
     myLog : function(functionname, message1, message2) {
-        console.log(this.ID + ", " + functionname +", " +message1, + ", " + message2 +  Math.round(new Date().getTime() / 1000) );
+        console.log(this.userID + ", " + functionname 
+                    +", " +message1, + ", " + message2 
+                    +  Math.round(new Date().getTime() / 1000) );  
+       /* this.jslogger.log("id="+this.ID+
+                    ",functionname="+functionname+
+                   ",message1="+message1+
+                   ",message2="+message2);*/
         
     },
     
@@ -66,16 +76,25 @@ var app = {
         var self = this;
         var qidMatch = /^#qid\/(\d{1,})/;
         var hash = window.location.hash;
-
-        // if we haven't clicked next, we should be on first page
-        if (!hash) {
-            this.qid=1;
-            this.checkCondition('begin');
-        }
-        var match = hash.match(qidMatch);
-        if (match && match.length>1 && Number(match[1])) {
-            this.qid = Number(match[1])+1;
-             this.myLog("getQId", "on question " + this.qid, " toal question " + this.store.totalQuestions() );
+          
+       if (!hash) {
+            // if we haven't clicked next, we should be on the welcome page
+            $('body').html(self.welcomeTpl());
+            return;
+      }
+       var match = hash.match(qidMatch);
+       
+        if (match && match.length>1 ) {
+            console.log("match is "+ match[1]);
+            var p = Number(match[1]);
+            this.qid=p+1;
+            if (p==0){
+                // if we are on first qustion, store email and continue
+                this.userID=  $('#emailid').val();
+                this.checkCondition('begin');
+            }
+            
+            this.myLog("getQId", "on question " + this.qid, " total question " + this.store.totalQuestions() );
        
             // if we are on last question, we should go to thank you page
             if (this.qid > this.store.totalQuestions()) {
@@ -84,25 +103,25 @@ var app = {
                 return;
             }  
             this.checkCondition('middle');
+            
              
         }
         else {
-            this.myLog("getQId", "error with hash not matching ", "match: " + match + "hash: " + hash);
+            this.myLog("getQId", "error with hash not matching ", "match: " + match + ", hash: " + hash);
         }
           
-          // use id to go to next page
-       // this.store = new MemoryStore(function() {
-                $('body').html(new HomeView(self.store, self.qid).render().el);
-         //   }); 
+        $('body').html(new HomeView(self.store, self.qid).render().el);
         
     },
     
    
     initialize: function() {
+       // this.jslogger = new JSLogger({apiKey: "52b09ffe9795454604000128"});
         this.alertShown=0;
+        this.welcomeTpl = Handlebars.compile($("#welcome-tpl").html());
         this.getCondition();
-        var self = this;
         this.registerEvents();
+        var self = this;
         this.store = new MemoryStore(function() {
             self.getQId();
         });

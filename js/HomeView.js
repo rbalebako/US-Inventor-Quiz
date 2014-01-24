@@ -15,8 +15,7 @@ var HomeView = function(store, qid) {
                 else {
                     $('#response').html('Oops!!  The correct answer is "' +correcta.atext +'"') ;
                 }
-               // $('#footer:a').removeClass('hideButton');
-                $('#nextbutton').addClass('button');
+                $('#nextbutton').removeClass("hideButton");
                     
         });
     },
