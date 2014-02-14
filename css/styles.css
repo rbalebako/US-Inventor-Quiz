@@ -24,7 +24,15 @@ input[type=radio] {
 input[type=radio] {
     display:none;
 }
- 
+input[type=text] {
+ padding: 10px; 
+  -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+     border-radius: 5px;
+     width: 95%;
+//    border: 10px solid green;
+}
+
 input[type=radio] + label {
  /*   display:inline-block; */
     overflow: visible;
@@ -66,7 +74,8 @@ input[type=radio]:checked + label {
 
 #response{
  color: #63AA9C;
- border-bottom: 3px;
+ border-bottom: 5px;
+ border-top: 5px;
 }
 .content {
 
@@ -78,12 +87,14 @@ input[type=radio]:checked + label {
 
 
 h1 {
-    color: white;
-    background-color: #E9633B;
-    text-align: center;
-    -moz-border-radius: 5px;
+ padding: 3px; 
+    color: #E9633B;
+    border-bottom: 1px solid #63AA9C;
+/*    background-color:  */
+    text-align: left;
+/*    -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-     border-radius: 5px;
+     border-radius: 5px; */
      font-size: medium;
 }
 
@@ -100,13 +111,22 @@ h1 {
     color: #333333;
     cursor: pointer;
     line-height: 20px;
-    margin: -2px -2px 0;
     overflow: visible;
-    padding: 4px 12px;
+   padding: 4px 12px;
     text-align: center;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
     vertical-align: middle;
-    width: 90%;
+    width: 93%;
     text-decoration: none;
     text-transform: uppercase;
+ /*   margin: 2px 2px 2px 2px;*/
+/*    margin-left:auto; margin-right:0px */
+}
+
+#responsebox {
+    border: 1px solid #63AA9C;
+    text-align: center;
+  -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+     border-radius: 5px;
 }

@@ -10,28 +10,30 @@
     
 <script id="welcome-tpl" type="text/x-handlebars-template">
     
-    <div class='header'><h1>Welcome!</h1></div>
+    <div class='header'><h1>US Inventors History Quiz</h1></div>
      <div data-role="content">
-    <p>Thank you for participating in this study!</p>
-    <p> Before we begin, please enter your email.</p>
-         <input type="text" name="emailid" id="emailid"/>
-     <div class='footer' data-role="footer"><a href='#qid/0' id="nextbutton" class="ui-shadow ui-btn ui-corner-all">Continue</a></a></div>   
+    <p>Thank you for participating in this study created by researchers at Carnegie Mellon University.</p>
+    <p>Before we begin, please enter the same email you used in the consent form.</p>
+     <input type="text" name="emailid" id="emailid"/>
+     <a href='#qid/0' id="nextbutton" class="ui-shadow ui-btn ui-corner-all">Continue</a>
+     <div id='footer'></div>   
     
 </script>
     
 <script id="home-tpl" type="text/x-handlebars-template">
-    <div data-role="header" data-position="fixed"><h1>Question {{id}}</h1></div>
+    <div data-role="header" data-position="fixed"><h1>Question {{id}} of 11</h1></div>
     <div class="content">
       <p><image class='question-image' src='img/{{qimage}}' />
         {{qtext}}<br style="clear: both;" /></p>
       <div>
         <span class='answer-list'></span>
-        <div id='response'></div>  
       </div>
     </div>
-    <div data-role="footer">
-    <a href='#qid/{{id}}'  id="nextbutton" class="ui-btn ui-corner-all ui-shadow hidebutton">Next</a>
+    <div id="responsebox">
+    <div id="response"></div>  
+    <a href='#qid/{{id}}'  id="nextbutton" class="ui-btn ui-corner-all ui-shadow hidebutton"> Next</a>
     </div>       
+    <div id="footer"></div>
 </script>
 
 <script id="answer-li-tpl" type="text/x-handlebars-template">
@@ -47,11 +49,10 @@
     <div  data-role="header" data-position="fixed"><h1>Thank You </h1></div>
      <div data-role="content">
     <p>You got {{correctAnswers}} out of {{totalQuestions}} questions correct.</p>
-    <p>Thank you for participating in this study!  You have completed 3 out of 5 steps already!
-       <p> <image  src='img/study_process.png' />
-        Tomorrow you will recieve an email with a link to a short survey about this app.  To complete this study and receive payment, you must fill out the survey within one day of receiving the email, so fill the survey out as soon as possible.  Thank you! </p>
+    <p>Thank you for participating in this study!  You have completed 3 out of 5 steps already!</p>
+    <p> Tomorrow you will recieve an email with a link to a short survey about this app.  To complete this study and receive payment, you must fill out the survey within one day of receiving the email, so fill the survey out as soon as possible.  Thank you! </p>
          </div>
-      <div  data-role="footer"></div>
+      <div id="footer"></div>
 </script>
     
 </div>    
