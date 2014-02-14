@@ -29,13 +29,13 @@ var app = {
 },
               
     myLog : function(functionname, message1, message2) {
-        console.log(this.userID + ", " + functionname 
+	/*  console.log(this.userID + ", " + functionname 
                     +", " +message1, + ", " + message2 
-                    +  Math.round(new Date().getTime() / 1000) );  
-       /* this.jslogger.log("id="+this.ID+
+                    +  Math.round(new Date().getTime() / 1000) );  */
+       this.jslogger.log("id="+this.ID+
                     ",functionname="+functionname+
                    ",message1="+message1+
-                   ",message2="+message2);*/
+                   ",message2="+message2);
         
     },
     
