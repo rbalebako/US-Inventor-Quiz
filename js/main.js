@@ -42,22 +42,27 @@ var app = {
     
     showAlert: function (message, title) {
         this.alertShown++;
-	//ref.loadUrl("file:///android_asset/www/index.html", 10000);
 
-	window.open('warning/warning.html', '_blank', 'location=yes');
+	/*if (navigator.notification) {
+	    navigator.notification.alert(message, null, title, 'OK');
+	} else {
+	    alert(title ? (title + ": " + message) : message);
+	    }*/
+	
+	if (window.showModalDialog) {
+	    window.showModalDialog("warning/warning.html","name",
+				   "dialogWidth:255px;dialogHeight:250px");
+	} 
+
+	    //	    window.open('xpopupex.htm','name', 'height=255,width=250,toolbar=no,directories=no,status=no, continued from previous linemenubar=no,scrollbars=no,resizable=no ,modal=yes');
+//	window.open('warning/warning.html', '_blank', 'location=yes');
 	//ref.addEventListener('loadstart', function() { alert(event.url); });
-
-        if (navigator.notification) {
-            navigator.notification.alert(message, null, title, 'OK');
-        } else {
-            alert(title ? (title + ": " + message) : message);
-	    }
 
 
     },
     
     getCondition: function(){
-        var min =0;
+        var min =1;
         var max=3;       
         this.condition = Math.floor(Math.random() * (max - min + 1) + min);
         this.myLog("getCondition set " + this.condition);
@@ -68,9 +73,9 @@ var app = {
         if (this.alertShown>0) {
             return;
         }
-        if ((this.condition==0 && currentPlace=='begin') ||
-            (this.condition==1 && currentPlace=='middle') ||
-            (this.condition==2 && currentPlace=='end')
+        if ((this.condition==1 && currentPlace=='begin') ||
+            (this.condition==2 && currentPlace=='middle') ||
+            (this.condition==3 && currentPlace=='end')
            ) {
            
             this.showAlert("This is a placeholder for a warning.", "Data will be shared");

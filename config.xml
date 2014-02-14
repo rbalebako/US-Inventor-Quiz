@@ -19,4 +19,6 @@
         <preference name="Fullscreen" value="true" />
         <preference name="WebViewBounce" value="true" /> 
     <feature name="http://api.phonegap.com/1.0/notification"/>
+
+<icon src="icon.png" />
 </widget>
