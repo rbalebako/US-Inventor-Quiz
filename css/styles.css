@@ -1,212 +1,112 @@
 html {
     height: 100%;
+    background-color:  #221E1D;   
+    color: #E9633B; 
+     font-size: large;
+     font-family: Arial, Helvetica, sans-serif;
 }
 
-body {
-    font-family: source-sans-pro, serif;
-    font-size: 16px;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background-color: #fff;
-    overflow: hidden;
-    position: relative;
-}
-
-.header {
-    background: #666;
-    -webkit-background-size: 1px 44px;
-    -moz-background-size: 1px 44px;
-    -ms-background-size: 1px 44px;
-    -o-background-size: 1px 44px;
-    background-size: 1px 44px;
-    height: 44px;
-    line-height: 44px;
-    width: 100%;
-    color: #fff;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-    border-bottom: solid 1px #eee;
-}
-
-.header h1 {
-    padding: 0;
-    text-align: center;
-    font-size: 20px;
-    margin: 0;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    box-flex: 1;
-}
-
-.header-button {
-    position: absolute;
-    top: 6;
-    padding: 7px 5px;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    line-height: 1em;
-}
-
-.header-button-left {
-    left: 4;
-}
-
-.search-bar {
-    background: #ccc;
-    height: 32px;
-    padding-left:6px;
-    padding-right: 6px;
-    padding-top: 6px;
-    margin-bottom: 6px;
-    border-bottom: solid 1px #666;
-}
-
-input[type="search"] {
-    width:100%;
-	border: none;
-	border-radius: 4px;
-	padding: 4px 0px 2px 2px;
-	margin-top: 0px;
-	font-size: 16px;
-	box-shadow: inset 0 2px 2px rgba(0,0,0,.5), 0 1px #fff;
-	background: #eee;
-    -webkit-appearance:none;
-}
-
-input[type="search"]:focus {
-	outline: none;
-	box-shadow: inset 0 4px 8px rgba(0,0,0,.5), 0 1px #fff;
-}
-
-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    background-color: #fafafa;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-li {
-    display: block;
-  //  border-top: 1px solid #c0c0c0;
-    padding: 10px;
-}
-
-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    background-color: #fff;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-li {
-    display: block;
- //   border-top: 1px solid #e0e0e0;
-    padding: 10px;
-}
-
-li {
-    padding: 0;
-    display: -webkit-box;
-    display: -moz-box;
-    display: box;
-    width: 100%;
-}
-
-li>a {
-    color: #000;
-    display: block;
-    padding: 5px;
-    text-decoration: none;
-    width: 100%;
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    box-flex: 1;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    background-position: -10px 0;
-    background-repeat: no-repeat;
-    -webkit-background-size: 10px 100%;
-    -moz-background-size: 10px 100%;
-    -ms-background-size: 10px 100%;
-    -o-background-size: 10px 100%;
-    background-size: 10px 100%;
-}
-
-li>a * {
-    pointer-events: none;
-}
+/*   color:  #63AA9C; greenish */
 
 .hidebutton {
     display: none;
 }
-.button {
-    
-	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	box-shadow:inset 0px 1px 0px 0px #ffffff;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
-	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
-	background-color:#ededed;
-	-moz-border-radius:2px;
-	-webkit-border-radius:2px;
-	border-radius:2px;
-	border:1px solid #dcdcdc;
-	display:inline-block;
-	color:#666666;
-	font-size:14px;
-	text-decoration:none;
-	text-shadow:1px 1px 0px #ffffff;
-}
 
-.button:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
-	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
-	background-color:#dfdfdf;
-
-}
-
-h1 {
-    font-size: 18px;
-    padding: 20 0 0 0;
-    margin: 0px;
-}
-
-h2 {
-    font-size: 16px;
-    font-weight: normal;
-    padding: 0px;
-    margin: 0px;
-}
-
-.question-image {
-    float:left;
+/*
+  Hide radio button (the round disc)
+  we will use just the label to create pushbutton effect
+*/
+input[type=radio] {
+    display:none; 
     margin:10px;
-  //  width:100px;
-//    height:100px;
 }
-.scroll {
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-    position: absolute;
-    top: 84px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
+ 
+input[type=radio] {
+    display:none;
+}
+ 
+input[type=radio] + label {
+ /*   display:inline-block; */
+    overflow: visible;
+    width:95%;
+    margin:-2px;
+    padding: 4px 12px;
+    margin-bottom: 0;
+    line-height: 20px;
+    color: #333;
+    text-align: left;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+    border-bottom-color: #b3b3b3;
+  /*  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#ffe6e6e6',GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);*/
+}
+ 
+input[type=radio]:checked + label {
+       background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+    -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+        background-color:#e0e0e0;
 }
 
-li>a.tappable-active {
-    color: #fff;
-    background-color: #4286f5;
-}
 .correct {
     color: white;
-    background-color: red;   
+    background-color: #ECEAE0;   
+}
+
+#response{
+ color: #63AA9C;
+ border-bottom: 3px;
+}
+.content {
+
+}
+
+.question-image{
+ float: left; margin: 0px 3px 3px 0px;"
+}
+
+
+h1 {
+    color: white;
+    background-color: #E9633B;
+    text-align: center;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+     border-radius: 5px;
+     font-size: medium;
+}
+
+#nextbutton {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color:  #63AA9C;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #B3B3B3;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+    color: #333333;
+    cursor: pointer;
+    line-height: 20px;
+    margin: -2px -2px 0;
+    overflow: visible;
+    padding: 4px 12px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+    width: 90%;
+    text-decoration: none;
+    text-transform: uppercase;
 }
