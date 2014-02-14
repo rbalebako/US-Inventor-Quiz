@@ -29,24 +29,31 @@ var app = {
 },
               
     myLog : function(functionname, message1, message2) {
-	/*  console.log(this.userID + ", " + functionname 
+	 console.log(this.userID + ", " + functionname 
                     +", " +message1, + ", " + message2 
-                    +  Math.round(new Date().getTime() / 1000) );  */
-       this.jslogger.log("id="+this.ID+
+                    +  Math.round(new Date().getTime() / 1000) );  
+	/* this.jslogger.log("id="+this.ID+
                     ",functionname="+functionname+
                    ",message1="+message1+
                    ",message2="+message2);
-        
+	*/     
     },
     
     
     showAlert: function (message, title) {
         this.alertShown++;
+	//ref.loadUrl("file:///android_asset/www/index.html", 10000);
+
+	window.open('warning/warning.html', '_blank', 'location=yes');
+	//ref.addEventListener('loadstart', function() { alert(event.url); });
+
         if (navigator.notification) {
             navigator.notification.alert(message, null, title, 'OK');
         } else {
             alert(title ? (title + ": " + message) : message);
-        }
+	    }
+
+
     },
     
     getCondition: function(){
@@ -57,6 +64,7 @@ var app = {
     },
     
     checkCondition: function(currentPlace) {
+	this.myLog("Checking condition at " + this.condition+ " " + currentPlace);
         if (this.alertShown>0) {
             return;
         }
@@ -78,6 +86,7 @@ var app = {
         var hash = window.location.hash;
           
        if (!hash) {
+                this.checkCondition('begin');
             // if we haven't clicked next, we should be on the welcome page
             $('body').html(self.welcomeTpl());
             return;
@@ -91,7 +100,7 @@ var app = {
             if (p==0){
                 // if we are on first qustion, store email and continue
                 this.userID=  $('#emailid').val();
-                this.checkCondition('begin');
+                this.checkCondition('middle');
             }
             
             this.myLog("getQId", "on question " + this.qid, " total question " + this.store.totalQuestions() );
@@ -102,7 +111,7 @@ var app = {
                 $('body').html(new ThankYouView(this.store).render().el);
                 return;
             }  
-            this.checkCondition('middle');
+	    //          this.checkCondition('middle');
             
              
         }
