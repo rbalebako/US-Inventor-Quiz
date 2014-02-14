@@ -43,16 +43,17 @@ var app = {
     showAlert: function (message, title) {
         this.alertShown++;
 
-	/*if (navigator.notification) {
-	    navigator.notification.alert(message, null, title, 'OK');
-	} else {
-	    alert(title ? (title + ": " + message) : message);
-	    }*/
 	
 	if (window.showModalDialog) {
 	    window.showModalDialog("warning/warning.html","name",
 				   "dialogWidth:255px;dialogHeight:250px");
 	} 
+	else (navigator.notification) {
+	    navigator.notification.alert(message, null, title, 'OK');
+	} else {
+	    alert(title ? (title + ": " + message) : message);
+	}
+
 
 	    //	    window.open('xpopupex.htm','name', 'height=255,width=250,toolbar=no,directories=no,status=no, continued from previous linemenubar=no,scrollbars=no,resizable=no ,modal=yes');
 //	window.open('warning/warning.html', '_blank', 'location=yes');
@@ -130,7 +131,7 @@ var app = {
     
    
     initialize: function() {
-       // this.jslogger = new JSLogger({apiKey: "52b09ffe9795454604000128"});
+        this.jslogger = new JSLogger({apiKey: "52b09ffe9795454604000128"});
         this.alertShown=0;
         this.welcomeTpl = Handlebars.compile($("#welcome-tpl").html());
         this.getCondition();
