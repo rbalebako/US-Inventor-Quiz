@@ -28,37 +28,29 @@ var app = {
                
 },
               
-    myLog : function(functionname, message1, message2) {
-	 console.log(this.userID + ", " + functionname 
-                    +", " +message1, + ", " + message2 
-                    +  Math.round(new Date().getTime() / 1000) );  
-	/* this.jslogger.log("id="+this.ID+
-                    ",functionname="+functionname+
-                   ",message1="+message1+
-                   ",message2="+message2);
-	*/     
+    myLog : function(description, event) {
+	 send =  "?id="+this.userID +
+	         "&d="+description +
+	         "&e="+event;
+
+	 $.post('https://saucers.cups.cs.cmu.edu/~rahunt/warnings/input.php', send);
+	 console.log(this.userID + ", " + description
+                    +", " +event +  
+		     +  Math.round(new Date().getTime() / 1000) ) ;
+
+
     },
     
     
     showAlert: function (message, title) {
         this.alertShown++;
-
-	
-	if (window.showModalDialog) {
-	    window.showModalDialog("warning/warning.html","name",
-				   "dialogWidth:255px;dialogHeight:250px");
-	} 
-	else (navigator.notification) {
+        if  (navigator.notification) {
 	    navigator.notification.alert(message, null, title, 'OK');
-	} else {
+	}
+	else {
 	    alert(title ? (title + ": " + message) : message);
 	}
-
-
-	    //	    window.open('xpopupex.htm','name', 'height=255,width=250,toolbar=no,directories=no,status=no, continued from previous linemenubar=no,scrollbars=no,resizable=no ,modal=yes');
-//	window.open('warning/warning.html', '_blank', 'location=yes');
-	//ref.addEventListener('loadstart', function() { alert(event.url); });
-
+	this.myLog("warning shown", "warning");
 
     },
     
@@ -66,11 +58,11 @@ var app = {
         var min =1;
         var max=3;       
         this.condition = Math.floor(Math.random() * (max - min + 1) + min);
-        this.myLog("getCondition set " + this.condition);
+        this.myLog("getCondition set " + this.condition, "Condition set");
     },
     
     checkCondition: function(currentPlace) {
-	this.myLog("Checking condition at " + this.condition+ " " + currentPlace);
+	this.myLog("at " + currentPlace, "paged reached");
         if (this.alertShown>0) {
             return;
         }
@@ -79,8 +71,8 @@ var app = {
             (this.condition==3 && currentPlace=='end')
            ) {
            
-            this.showAlert("This is a placeholder for a warning.", "Data will be shared");
-            this.myLog("checkCondition", "condition" + this.condition, "currentPlace " + currentPlace );
+            this.showAlert("Privacy notice:", "This app will share your browser history with ad networks. ");
+	    //            this.myLog("checkCondition", "condition" + this.condition, "currentPlace " + currentPlace );
         }
 
         
@@ -106,23 +98,23 @@ var app = {
             if (p==0){
                 // if we are on first qustion, store email and continue
                 this.userID=  $('#emailid').val();
+		this.myLog
                 this.checkCondition('middle');
             }
             
-            this.myLog("getQId", "on question " + this.qid, " total question " + this.store.totalQuestions() );
+            this.myLog("on question " + this.qid + " of "  + this.store.totalQuestions(), "questionMatch" );
        
             // if we are on last question, we should go to thank you page
             if (this.qid > this.store.totalQuestions()) {
                 this.checkCondition('end');
+		this.myLog("reached page", "finished");
                 $('body').html(new ThankYouView(this.store).render().el);
                 return;
-            }  
-	    //          this.checkCondition('middle');
-            
+            }              
              
         }
         else {
-            this.myLog("getQId", "error with hash not matching ", "match: " + match + ", hash: " + hash);
+            this.myLog("error with hash not matching match: " + match + ", hash: " + hash, "error");
         }
           
         $('body').html(new HomeView(self.store, self.qid).render().el);
@@ -131,7 +123,6 @@ var app = {
     
    
     initialize: function() {
-        this.jslogger = new JSLogger({apiKey: "52b09ffe9795454604000128"});
         this.alertShown=0;
         this.welcomeTpl = Handlebars.compile($("#welcome-tpl").html());
         this.getCondition();
