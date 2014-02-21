@@ -27,7 +27,8 @@ var app = {
     }
                
 },
-              
+    // send a log message to php script on saucers 
+    // that stores it in database          
     myLog : function(description, event) {
 	 send =  "id="+this.userID +
 	         "&d="+description +
@@ -40,7 +41,9 @@ var app = {
 
 
     },
-    
+
+
+    // may be needed to access url of a differnt page
     getLocalPath: function(pageName)
     {
 	var location = document.location.href;
@@ -49,9 +52,20 @@ var app = {
 	return location;
     },
     
+    // regex to validate email
+    validateEmail: function (email) {
+	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+	if( !emailReg.test( email ) ) {
+	    return false;
+	} else {
+	    return true;
+	}
+    },
+
+    // show the privacy alert using fancybox tool
     showAlert: function (message, title) {
         this.alertShown++;
-	$.fancybox.open([{href: 'img/privacynotice.jpg'}], {padding: 0});
+	//	$.fancybox.open([{href: 'img/privacynotice.png'}], {padding: 0});
 
 	/*        if  (navigator.notification) {
 	    navigator.notification.alert(message, null, title, 'OK');
@@ -60,19 +74,19 @@ var app = {
 	    alert(title ? (title + ": " + message) : message);
 	    }*/
 	this.myLog("warning shown", "warning");
-
-
     },
     
+    // randomly assign a condition
     getCondition: function(){
         var min =1;
         var max=3;       
         this.condition = Math.floor(Math.random() * (max - min + 1) + min);
-        this.myLog("getCondition set " + this.condition, "Condition set");
+        this.myLog(this.condition, "condition");
     },
     
+    // if we are at beginning middle or end, check whether they should get a privacy notification based on their condition
     checkCondition: function(currentPlace) {
-	this.myLog("at " + currentPlace, "paged reached");
+	this.myLog(currentPlace, "place");
         if (this.alertShown>0) {
             return;
         }
@@ -82,34 +96,52 @@ var app = {
            ) {
            
             this.showAlert("Privacy notice:", "This app will share your browser history with ad networks. ");
-	    //            this.myLog("checkCondition", "condition" + this.condition, "currentPlace " + currentPlace );
+
         }
 
         
     },
     
+    // get information about their phone for debugging
+    getPhoneInfo: function() {
+	this.userID= device.uuid; 
+	this.myLog('Device Name: '     + device.name     +  
+		   'Device PhoneGap: ' + device.phonegap + 
+		   'Device Platform: ' + device.platform + 
+		   'Device UUID: '     + device.uuid     + 
+		   'Device Version: '  + device.version, 
+		   "deviceinfo" ;
+
+    }
+
+    // based on the QId determine which page and question to show
       getQId: function() {
         var self = this;
         var qidMatch = /^#qid\/(\d{1,})/;
         var hash = window.location.hash;
           
        if (!hash) {
-                this.checkCondition('begin');
+	   this.getPhoneInfo();
+	   this.checkCondition('begin');
             // if we haven't clicked next, we should be on the welcome page
             $('body').html(self.welcomeTpl());
             return;
       }
-	console.log("hash is " + hash);
        var match = hash.match(qidMatch);
        
         if (match && match.length>1 ) {
-            console.log("match is "+ match[1]);
             var p = Number(match[1]);
             this.qid=p+1;
             if (p==0){
                 // if we are on first qustion, store email and continue
-                this.userID=  $('#emailid').val();
-		this.myLog
+		email =  $('#emailid').val();
+		if (this.validateEmail(email) ) {
+                   this.emailID=  $('#emailid').val();
+		   this.myLog("email", this.emailID);
+		 }
+		else {
+		   $('#response').html("Oops!!  That doesn't seem to be a valid email address.  Without a valid email, you won't be able to finish the study.") ;
+		}
                 this.checkCondition('middle');
             }
             
@@ -118,7 +150,7 @@ var app = {
             // if we are on last question, we should go to thank you page
             if (this.qid > this.store.totalQuestions()) {
                 this.checkCondition('end');
-		this.myLog("reached page", "finished");
+		this.myLog(this.qid, "finished");
                 $('body').html(new ThankYouView(this.store).render().el);
                 return;
             }              
@@ -136,7 +168,7 @@ var app = {
     initialize: function() {
         this.alertShown=0;
         this.welcomeTpl = Handlebars.compile($("#welcome-tpl").html());
-	//	this.privacyTpl=	 Handlebars.compile($("#privacynotice-tpl").html());
+	$("a#privacynotice").fancybox();
         this.getCondition();
         this.registerEvents();
         var self = this;
