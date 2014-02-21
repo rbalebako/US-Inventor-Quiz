@@ -36,7 +36,7 @@ var app = {
 
 	 $.post('https://saucers.cups.cs.cmu.edu/~rahunt/warnings/input.php', send);
 	 console.log(this.userID + ", " + description
-                    +", " +event +  
+                    +", " +event + ", " +  
 		     +  Math.round(new Date().getTime() / 1000) ) ;
 
 
@@ -65,9 +65,22 @@ var app = {
     // show the privacy alert using fancybox tool
     showAlert: function (message, title) {
         this.alertShown++;
-	//	$.fancybox.open([{href: 'img/privacynotice.png'}], {padding: 0});
+	/*	jQuery(document).ready(function() {
+		$.fancybox(
+			   '<h2>Hi!</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis mi eu elit tempor facilisis id et neque</p>',
+                       {
+			       'autoDimensions': false,
+				   'width'         : 350,
+				   'height'        : 'auto',
+				   'transitionIn': 'none',
+				   'transitionOut': 'none'
+				   }
+			   );
+			   });*/
 
-	/*        if  (navigator.notification) {
+	$.fancybox.open([{href: 'img/privacynotice.png'}], {padding: 0});
+	/*
+	if  (navigator.notification) {
 	    navigator.notification.alert(message, null, title, 'OK');
 	}
 	else {
@@ -80,7 +93,8 @@ var app = {
     getCondition: function(){
         var min =1;
         var max=3;       
-        this.condition = Math.floor(Math.random() * (max - min + 1) + min);
+	//        this.condition = Math.floor(Math.random() * (max - min + 1) + min);
+	this.condition=3;
         this.myLog(this.condition, "condition");
     },
     
@@ -104,15 +118,27 @@ var app = {
     
     // get information about their phone for debugging
     getPhoneInfo: function() {
-	this.userID= device.uuid; 
-	this.myLog('Device Name: '     + device.name     +  
-		   'Device PhoneGap: ' + device.phonegap + 
-		   'Device Platform: ' + device.platform + 
-		   'Device UUID: '     + device.uuid     + 
-		   'Device Version: '  + device.version, 
-		   "deviceinfo" ;
+	if (window.device) {
+	    this.myLog(' Device Name: '     + device.name     +  
+		       ', Device PhoneGap: ' + device.phonegap + 
+		       ', Device Platform: ' + device.platform + 
+		       ', Device UUID: '     + device.uuid     + 
+		       ', Device Version: '  + device.version, 
+		       "deviceinfo" );
+	} 
+    },
 
-    }
+    //create a 15 variable long id which we hope will uniquely identify user
+    makeid:function()    {
+	var text = "";
+	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+	for( var i=0; i < 15; i++ )
+	    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+	return text;
+    },
+
 
     // based on the QId determine which page and question to show
       getQId: function() {
@@ -167,8 +193,9 @@ var app = {
    
     initialize: function() {
         this.alertShown=0;
+	this.userID=this.makeid();
         this.welcomeTpl = Handlebars.compile($("#welcome-tpl").html());
-	$("a#privacynotice").fancybox();
+	//	$("a#privacynotice").fancybox();
         this.getCondition();
         this.registerEvents();
         var self = this;
@@ -180,7 +207,10 @@ var app = {
 
 };
 
+
+
 app.initialize();
+
 
 
 

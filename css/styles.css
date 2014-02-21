@@ -30,7 +30,6 @@ input[type=text] {
     -webkit-border-radius: 5px;
      border-radius: 5px;
      width: 95%;
-//    border: 10px solid green;
 }
 
 input[type=radio] + label {
@@ -82,7 +81,7 @@ input[type=radio]:checked + label {
 }
 
 .question-image{
- float: left; margin: 0px 3px 3px 0px;"
+ float: left; margin: 0px 3px 3px 0px;
 }
 
 
