@@ -97,7 +97,7 @@ h1 {
      font-size: medium;
 }
 
-#nextbutton {
+.bigbutton {
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
