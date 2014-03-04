@@ -10,11 +10,10 @@ var WelcomeView = function(app) {
 		email =  $('#emailid').val();
 		if (self.validateEmail(email) ) {
 		    app.emailID=  $('#emailid').val();
-		    app.myLog("email", this.emailID);
+		    app.myLog("email", app.emailID);
 		    $('#response').html("Looks good!") ;
 		    $('#emailbutton').addClass("ui-shadow ui-btn ui-corner-all");
 		    $('#emailbutton').removeClass("hidebutton");
-
 		}
 		else {
 		    $('#response').html("That doesn't seem to be a valid email address yet.") ;
