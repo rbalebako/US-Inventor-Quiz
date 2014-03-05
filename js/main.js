@@ -2,8 +2,23 @@ var app = {
 
     registerEvents: function() {
 	var self = this;
+	$(document).ready(function() {
+		$(".fancybox").fancybox();
+	    });
+
 	$(window).on('hashchange', $.proxy(this.getQId, this));           
-	
+
+	$('#privacynotice').fancybox({
+		openEffect: 'elastic',
+		    closeEffect: 'elastic',
+		    
+		    helpers : {
+		    title : {
+			type : 'inside'
+			    }
+		}
+	    });
+		
 
     // Check of browser supports touch events...
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
@@ -22,9 +37,42 @@ var app = {
 	    $('body').on('mouseup', 'a', function(event) {
 		    $(event.target).removeClass('tappable-active');
 		});
-	}
-	
+	}	
     },
+
+
+    // show the privacy alert using fancybox tool
+    showAlert: function (message, title) {
+        this.alertShown++;
+	//	$('#privacynotice').click();
+
+	/*	$.fancybox.open([
+			 {
+			     href : 'http://fancyapps.com/fancybox/demo/1_b.jpg',
+				 title : '1st title'
+				 },
+			 {
+			     href : 'http://fancyapps.com/fancybox/demo/2_b.jpg',
+				 title : '2nd title'
+				 }    
+			 ], {
+			    padding : 0   
+				});
+	*/
+
+	//	$.fancybox.open([{href: 'img/privacynotice.png'}], {padding: 0});
+	//console.log("fbresult is " + fbresult);
+
+	/*	if  (navigator.notification) {
+	    navigator.notification.alert(message, null, title, 'OK');
+	}
+	else {
+	    alert(title ? (title + ": " + message) : message);
+	    }*/
+	this.myLog("warning shown", "warning");
+    },
+    
+
 
     // send a log message to php script on saucers 
     // that stores it in database          
@@ -50,41 +98,12 @@ var app = {
 	location = location.split(' ').join('%20');
 	return location;
     },
-
-    // show the privacy alert using fancybox tool
-    showAlert: function (message, title) {
-        this.alertShown++;
-	console.log("Show alert CALLED");
-	/*	jQuery(document).ready(function() {
-		$.fancybox(
-			   '<h2>Hi!</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis mi eu elit tempor facilisis id et neque</p>',
-                       {
-			       'autoDimensions': false,
-				   'width'         : 350,
-				   'height'        : 'auto',
-				   'transitionIn': 'none',
-				   'transitionOut': 'none'
-				   }
-			   );
-			   });*/
-
-	$.fancybox.open([{href: 'img/privacynotice.png'}], {padding: 0});
-	/*
-	if  (navigator.notification) {
-	    navigator.notification.alert(message, null, title, 'OK');
-	}
-	else {
-	    alert(title ? (title + ": " + message) : message);
-	    }*/
-	this.myLog("warning shown", "warning");
-    },
-    
     // randomly assign a condition
     getCondition: function(){
         var min =1;
         var max=3;       
 	//        this.condition = Math.floor(Math.random() * (max - min + 1) + min);
-	this.condition=3;
+	this.condition=1;
         this.myLog(this.condition, "condition");
     },
     
@@ -137,7 +156,6 @@ var app = {
         var hash = window.location.hash;          
 
        if (!hash) {
-	   console.log("just checked hash");
 	   this.checkCondition('begin');
 	   $('body').html(new WelcomeView(self).render().el);
            return;
@@ -174,7 +192,7 @@ var app = {
     initialize: function() {
         this.alertShown=0;
 	this.userID=this.makeid();
-	//	$("a#privacynotice").fancybox();
+	//$("a#privacynotice").fancybox();
 	this.getPhoneInfo();
         this.getCondition();
         this.registerEvents();
@@ -183,6 +201,7 @@ var app = {
             self.getQId();
         });
         this.thankYouTpl = Handlebars.compile($("#thankyou-tpl").html());
+	
     }
 
 };
