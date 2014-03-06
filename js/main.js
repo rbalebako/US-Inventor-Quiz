@@ -2,24 +2,10 @@ var app = {
 
     registerEvents: function() {
 	var self = this;
-	$(document).ready(function() {
-		$(".fancybox").fancybox();
-	    });
-
 	$(window).on('hashchange', $.proxy(this.getQId, this));           
 
-	$('#privacynotice').fancybox({
-		openEffect: 'elastic',
-		    closeEffect: 'elastic',
-		    
-		    helpers : {
-		    title : {
-			type : 'inside'
-			    }
-		}
-	    });
-		
 
+	
     // Check of browser supports touch events...
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
 	    // ... if yes: register touch event listener to change the "selected" state of the item
@@ -44,22 +30,16 @@ var app = {
     // show the privacy alert using fancybox tool
     showAlert: function (message, title) {
         this.alertShown++;
-	//	$('#privacynotice').click();
+	this.myLog("warning will be shown", "warning");
+
+	$(document).ready(function() {		
+		$('.fancybox').fancybox();	       		
+		$.fancybox.open('img/privacynotice.png');
+	    });
+
+	//$('#privacynotice').click();
 
 	/*	$.fancybox.open([
-			 {
-			     href : 'http://fancyapps.com/fancybox/demo/1_b.jpg',
-				 title : '1st title'
-				 },
-			 {
-			     href : 'http://fancyapps.com/fancybox/demo/2_b.jpg',
-				 title : '2nd title'
-				 }    
-			 ], {
-			    padding : 0   
-				});
-	*/
-
 	//	$.fancybox.open([{href: 'img/privacynotice.png'}], {padding: 0});
 	//console.log("fbresult is " + fbresult);
 
@@ -102,8 +82,7 @@ var app = {
     getCondition: function(){
         var min =1;
         var max=3;       
-	//        this.condition = Math.floor(Math.random() * (max - min + 1) + min);
-	this.condition=1;
+	this.condition = Math.floor(Math.random() * (max - min + 1) + min);
         this.myLog(this.condition, "condition");
     },
     
@@ -192,7 +171,6 @@ var app = {
     initialize: function() {
         this.alertShown=0;
 	this.userID=this.makeid();
-	//$("a#privacynotice").fancybox();
 	this.getPhoneInfo();
         this.getCondition();
         this.registerEvents();
