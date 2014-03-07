@@ -37,9 +37,7 @@ var WelcomeView = function(app) {
         this.el.html(WelcomeView.welcomeTpl(self)); 
         return this;
     },
-    
- 
-        
+            
     this.initialize();
  
 }

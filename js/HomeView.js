@@ -23,11 +23,9 @@ var HomeView = function(store, qid) {
     this.render=function() {
         this.el.html(HomeView.homeTpl(store.findQuestionById(this.qid))); 
         this.answers = this.el.find(".answer-list");
-        this.answers.html( HomeView.answerLiTpl(            store.findAnswersByQuestion(this.qid)));
+        this.answers.html( HomeView.answerLiTpl( store.findAnswersByQuestion(this.qid)));
         return this;
-    },
-    
- 
+    }, 
         
     this.initialize();
  

@@ -28,11 +28,7 @@ var app = {
 
     // show the privacy alert using fancybox tool
     showAlert: function () {
-        this.alertShown++;
-	this.myLog("warning shown", "warning");
-       	$('body').html(new PrivacyView(self.qid).render().el);
-	return;
-    },
+   },
     
 
     // send a log message to php script on saucers 
@@ -61,23 +57,29 @@ var app = {
     getCondition: function(){
         var min =1;
         var max=3;       
-	//	this.condition = Math.floor(Math.random() * (max - min + 1) + min);
-	this.condition=1;
+	this.condition = Math.floor(Math.random() * (max - min + 1) + min);
         this.myLog(this.condition, "condition");
     },
     
     // if we are at beginning middle or end, check whether they should get a privacy notification based on their condition
-    checkCondition: function(currentPlace) {
+    showNotice: function(currentPlace) {
+	console.log("Checking whether to show notice at "+currentPlace+ " with condition "+ this.condition);
         if (this.alertShown>0) {
-            return;
+            return 0;
         }
 	this.myLog(currentPlace, "check condition at place");
         if ((this.condition==1 && currentPlace=='begin') ||
             (this.condition==2 && currentPlace=='middle') ||
             (this.condition==3 && currentPlace=='end')
            ) { 
-	    this.showAlert();
+	    this.alertShown++;
+	    this.myLog("warning shown", "warning");
+	    var self = this;
+	    console.log("about to call Privacy view with "+self.qid);
+	    $('body').html(new PrivacyView(self).render().el);
+	    return 1;
         }        
+	return 0;
     },
     
     // get information about their phone for debugging
@@ -109,38 +111,39 @@ var app = {
         var self = this;
         var qidMatch = /^#qid\/(\d{1,})/;
         var hash = window.location.hash;          
+	var p=-1;
 
-       if (!hash) {
-	   this.checkCondition('begin');
-	   $('body').html(new WelcomeView(self).render().el);
-           return;
-      }
        var match = hash.match(qidMatch);
        
-        if (match && match.length>1 ) {
-            var p = Number(match[1]);
-            if (p==0){		    
-		this.myLog("email", this.emailID);
-                this.checkCondition('middle');
-            }
+	if (!hash) {
+	    this.qid=p;
+	}
+        else if (match && match.length>1 ) {
+            p = Number(match[1]);
             this.qid=p+1;
-            
-            this.myLog("on question " + this.qid + " of "  + this.store.totalQuestions(), "questionMatch" );
-       
-            // if we are on last question, we should go to thank you page
-            if (this.qid > this.store.totalQuestions()) {
-                this.checkCondition('end');
-		this.myLog(this.qid, "finished");
-                $('body').html(new ThankYouView(this.store).render().el);
-                return;
-            }              
-             
-        }
+            this.myLog("on question " + this.qid + " of "  + this.store.totalQuestions(), "questionMatch" );                     }
         else {
             this.myLog("error with hash not matching match: " + match + ", hash: " + hash, "error");
         }
-          
-        $('body').html(new HomeView(self.store, self.qid).render().el);
+
+	if (p==-1) {
+	   if (!this.showNotice('begin') ) {
+	       $('body').html(new WelcomeView(self).render().el);
+	       return;
+	   }
+	} else if (p==0) {
+	    this.myLog("email", this.emailID);
+	    if ( this.showNotice('middle') ) {
+		return;
+	    }
+	} else if (p>= this.store.totalQuestions()) {
+	    this.myLog(this.qid, "finished");
+	    if(!this.showNotice('end') ) {
+		$('body').html(new ThankYouView(this.store).render().el);
+	    }
+	    return;
+	}
+	$('body').html(new HomeView(self.store, self.qid).render().el);
         
     },
     

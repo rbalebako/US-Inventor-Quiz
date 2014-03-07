@@ -12,8 +12,7 @@ var ThankYouView = function(store) {
         return this;
     },
     
- 
-        
+         
     this.initialize();
  
 }
