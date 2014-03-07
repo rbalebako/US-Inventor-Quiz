@@ -12,6 +12,7 @@ html {
 #footer {
 	border-top: 1px solid #63AA9C;
 	text-align:center;
+	position: fixed; bottom: 0;
 }
 
 #footer a {
