@@ -1,16 +1,14 @@
 var WelcomeView = function(app) {
     this.initialize = function() {
         var self = this;
-	console.log("welcome initialize called");
 
         // Define a div wrapper for the view. The div wrapper is used to attach events.
         this.el = $('<div/>');
+	//this.el.trigger('click', "#privacynotice");
         this.el.on('keyup', '#emailid', function(){
-		console.log("email change detected");
 		email =  $('#emailid').val();
 		if (self.validateEmail(email) ) {
 		    app.emailID=  $('#emailid').val();
-		    app.myLog("email", app.emailID);
 		    $('#response').html("Looks good!") ;
 		    $('#emailbutton').addClass("ui-shadow ui-btn ui-corner-all");
 		    $('#emailbutton').removeClass("hidebutton");

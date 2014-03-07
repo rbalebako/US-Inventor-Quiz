@@ -5,7 +5,6 @@ var app = {
 	$(window).on('hashchange', $.proxy(this.getQId, this));           
 
 
-	
     // Check of browser supports touch events...
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
 	    // ... if yes: register touch event listener to change the "selected" state of the item
@@ -28,31 +27,13 @@ var app = {
 
 
     // show the privacy alert using fancybox tool
-    showAlert: function (message, title) {
+    showAlert: function () {
         this.alertShown++;
-	this.myLog("warning will be shown", "warning");
-
-	$(document).ready(function() {		
-		$('.fancybox').fancybox();	       		
-		$.fancybox.open('img/privacynotice.png');
-	    });
-
-	//$('#privacynotice').click();
-
-	/*	$.fancybox.open([
-	//	$.fancybox.open([{href: 'img/privacynotice.png'}], {padding: 0});
-	//console.log("fbresult is " + fbresult);
-
-	/*	if  (navigator.notification) {
-	    navigator.notification.alert(message, null, title, 'OK');
-	}
-	else {
-	    alert(title ? (title + ": " + message) : message);
-	    }*/
 	this.myLog("warning shown", "warning");
+       	$('body').html(new PrivacyView(self.qid).render().el);
+	return;
     },
     
-
 
     // send a log message to php script on saucers 
     // that stores it in database          
@@ -65,10 +46,7 @@ var app = {
 	 console.log(this.userID + ", " + description
                     +", " +event + ", " +  
 		     +  Math.round(new Date().getTime() / 1000) ) ;
-
-
     },
-
 
     // may be needed to access url of a differnt page
     getLocalPath: function(pageName)
@@ -78,30 +56,28 @@ var app = {
 	location = location.split(' ').join('%20');
 	return location;
     },
+
     // randomly assign a condition
     getCondition: function(){
         var min =1;
         var max=3;       
-	this.condition = Math.floor(Math.random() * (max - min + 1) + min);
+	//	this.condition = Math.floor(Math.random() * (max - min + 1) + min);
+	this.condition=1;
         this.myLog(this.condition, "condition");
     },
     
     // if we are at beginning middle or end, check whether they should get a privacy notification based on their condition
     checkCondition: function(currentPlace) {
-	this.myLog(currentPlace, "place");
         if (this.alertShown>0) {
             return;
         }
+	this.myLog(currentPlace, "check condition at place");
         if ((this.condition==1 && currentPlace=='begin') ||
             (this.condition==2 && currentPlace=='middle') ||
             (this.condition==3 && currentPlace=='end')
-           ) {
-           
-            this.showAlert("Privacy notice:", "This app will share your browser history with ad networks. ");
-
-        }
-
-        
+           ) { 
+	    this.showAlert();
+        }        
     },
     
     // get information about their phone for debugging
@@ -143,10 +119,11 @@ var app = {
        
         if (match && match.length>1 ) {
             var p = Number(match[1]);
-            this.qid=p+1;
             if (p==0){		    
+		this.myLog("email", this.emailID);
                 this.checkCondition('middle');
             }
+            this.qid=p+1;
             
             this.myLog("on question " + this.qid + " of "  + this.store.totalQuestions(), "questionMatch" );
        
@@ -178,8 +155,7 @@ var app = {
         this.store = new MemoryStore(function() {
             self.getQId();
         });
-        this.thankYouTpl = Handlebars.compile($("#thankyou-tpl").html());
-	
+
     }
 
 };
