@@ -8,6 +8,23 @@ html {
 
 /*   color:  #63AA9C; greenish */
 
+
+#footer {
+	border-top: 1px solid #63AA9C;
+	text-align:center;
+}
+
+#footer a {
+	color:  #63AA9C;
+	text-decoration: none;	   
+}
+
+
+#footer a:hover {
+	color:   #E9633B; 
+	text-decoration: underline;	   
+}
+
 .hidebutton {
     display: none;
 }
@@ -129,3 +146,4 @@ h1 {
     -webkit-border-radius: 5px;
      border-radius: 5px;
 }
+
