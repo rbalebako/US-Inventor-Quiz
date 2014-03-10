@@ -3,7 +3,7 @@ var app = {
     registerEvents: function() {
 	var self = this;
 	$(window).on('hashchange', $.proxy(this.getQId, this));           
-
+	//	document.addEventListener("menubutton", onMenuKeyDown, false);
 
     // Check of browser supports touch events...
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
@@ -26,9 +26,9 @@ var app = {
     },
 
 
-    // show the privacy alert using fancybox tool
-    showAlert: function () {
-   },
+    //    onMenuKeyDown: function() {
+	
+    //    }
     
 
     // send a log message to php script on saucers 
@@ -75,7 +75,6 @@ var app = {
 	    this.alertShown++;
 	    this.myLog("warning shown", "warning");
 	    var self = this;
-	    console.log("about to call Privacy view with "+self.qid);
 	    $('body').html(new PrivacyView(self).render().el);
 	    return 1;
         }        

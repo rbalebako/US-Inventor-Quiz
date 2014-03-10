@@ -125,12 +125,12 @@ var MemoryStore = function(successCallback, errorCallback) {
         {"id": 1003, "atext": "the lightening rod", "qid": 10, "correct": 0}, 
         {"id": 11, "atext": "a control unit for the artificial heart pacemaker", "qid": 11, "correct":1},
         {"id": 1101, "atext": "the smallpox vaccination", "qid": 11, "correct": 0}, 
-           {"id": 1102, "atext": "Acceleglove, a glove that can translate sign language into speech", "qid": 11, "correct": 0},
+           {"id": 1102, "atext": "a glove to translate sign language into speech", "qid": 11, "correct": 0},
                {"id": 1103, "atext": "the yo-yo", "qid": 11, "correct": 0},         
         {"id": 6, "atext": "patented a concave mirror to produce optical illusion images", "qid": 6, "correct":1},
-        {"id": 601, "atext": "devised a method of using punchcards to calculate Bernoulli numbers", "qid": 6, "correct": 0}, 
-        {"id": 602, "atext": "invented the first guillotine", "qid": 6, "correct": 0}, 
-            {"id": 603, "atext": "patented an odometer for postal service carriages", "qid": 6, "correct": 0}, 
+        {"id": 601, "atext": "devised punchcards", "qid": 6, "correct": 0}, 
+        {"id": 602, "atext": "invented the guillotine", "qid": 6, "correct": 0}, 
+            {"id": 603, "atext": "patented an odometer", "qid": 6, "correct": 0}, 
     ];
             
  /*             {"id": 6, "atext": "TODO", "qid": 6, "correct":1},  
