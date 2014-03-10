@@ -4,11 +4,9 @@ var MemoryStore = function(successCallback, errorCallback) {
         var questions = this.questions;
         var a = null;
         var l = questions.length;
-       console.log("will look for " + id);
         for (var i=0; i < l; i++) {
             if (questions[i].id === id) {
                 a = questions[i];
-                console.log('found question at ' + i + a);
                 break;
             }
         }
