@@ -1,7 +1,6 @@
 var app = {
 
-    registerEvents: function() {
-	var self = this;
+    registerEvents: function () {
 	$(window).on('hashchange', $.proxy(this.getQId, this));           
 	//	document.addEventListener("menubutton", onMenuKeyDown, false);
 
@@ -10,38 +9,34 @@ var app = {
 	    // ... if yes: register touch event listener to change the "selected" state of the item
 	    $('body').on('touchstart', 'a', function(event) {
 		    $(event.target).addClass('tappable-active');
-		});
+	    });
 	    $('body').on('touchend', 'a', function(event) {
 		    $(event.target).removeClass('tappable-active');
-		});
+	    });
 	} else {
 	    // ... if not: register mouse events instead
 	    $('body').on('mousedown', 'a', function(event) {
 		    $(event.target).addClass('tappable-active');
-		});
+	    });
 	    $('body').on('mouseup', 'a', function(event) {
 		    $(event.target).removeClass('tappable-active');
-		});
+	    });
 	}	
     },
-
-
-    //    onMenuKeyDown: function() {
-	
-    //    }
     
 
     // send a log message to php script on saucers 
     // that stores it in database          
-    myLog : function(description, event) {
-	 send =  "id="+this.userID +
-	         "&d="+description +
-	         "&e="+event;
+    myLog : function (description, event) {
+	var send =  "id=" + this.userID +
+	"&d=" + description +
+	"&e=" + event;
+	var ts =  Math.round(new Date().getTime() / 1000); 
 
 	 $.post('https://saucers.cups.cs.cmu.edu/~rahunt/warnings/input.php', send);
 	 console.log(this.userID + ", " + description
-                    +", " +event + ", " +  
-		     +  Math.round(new Date().getTime() / 1000) ) ;
+		     + ", " + event + ", " +  
+		     + ts );
     },
 
     // may be needed to access url of a differnt page
@@ -147,9 +142,10 @@ var app = {
     },
     
    
-    initialize: function() {
+    initialize: function() {	
         this.alertShown=0;
 	this.userID=this.makeid();
+	this.myLog("Loading", "loading");
 	this.getPhoneInfo();
         this.getCondition();
         this.registerEvents();
