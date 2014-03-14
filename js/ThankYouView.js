@@ -3,6 +3,11 @@ var ThankYouView = function(store) {
         this.totalQuestions = store.totalQuestions();
         this.correctAnswers = store.correctAnswers;
         this.el = $('<div/>');
+
+        this.el.on('click', '#exit', function(){
+		navigator.app.exitApp();
+	   });
+
     
     },
      

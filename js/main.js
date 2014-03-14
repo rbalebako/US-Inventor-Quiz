@@ -3,14 +3,6 @@ var app = {
     registerEvents: function () {
 	$(window).on('hashchange', $.proxy(this.getQId, this));           
 	//	document.addEventListener("menubutton", onMenuKeyDown, false);
-	$( "#exit" ).click(function() {
-		navigator.app.exitApp();
-	   });
-
-	$( "#exitpriv" ).click(function() {
-		this.myLog("Exit", "Privacy Notice");
-		navigator.app.exitApp();
-	   });
 
 
     // Check of browser supports touch events...
