@@ -24,10 +24,6 @@
 <gap:splash src="splash/ios/Default_at_2x.png" width="640" height="960" />
 <gap:splash src="splash/ios/Default-Landscape.png" width="1024" height="768" />
 <gap:splash src="splash/ios/Default-Portrait.png" width="768" height="1024" />
-<!--gap:splash gap:density="ldpi" gap:platform="android" src="splash/android/screen-ldpi-portrait.png" />
-<gap:splash gap:density="mdpi" gap:platform="android" src="splash/android/screen-mdpi-portrait.png" />
-<gap:splash gap:density="hdpi" gap:platform="android" src="splash/android/screen-hdpi-portrait.png" />
-<gap:splash gap:density="xhdpi" gap:platform="android" src="splash/android/-->
 
 <icon src="icon.png" />
 <icon src="icons/ios/classic.png" gap:platform="ios" width="57" height="57" />
