@@ -21,18 +21,18 @@
 
 
 <gap:splash src="splash/ios/Default.png" width="320" height="480" />
-<gap:splash src="splash/ios/Default_at_2x.png" width="640" height="960" />
+<!--gap:splash src="splash/ios/Default_at_2x.png" width="640" height="960" />
 <gap:splash src="splash/ios/Default-Landscape.png" width="1024" height="768" />
-<gap:splash src="splash/ios/Default-Portrait.png" width="768" height="1024" />
+<gap:splash src="splash/ios/Default-Portrait.png" width="768" height="1024" /-->
 
 <icon src="icon.png" />
-<icon src="icons/ios/classic.png" gap:platform="ios" width="57" height="57" />
+<!--icon src="icons/ios/classic.png" gap:platform="ios" width="57" height="57" />
 <icon src="icons/ios/ipad.png" gap:platform="ios" width="72" height="72" />
 <icon src="icons/ios/retina.png" gap:platform="ios" width="114" height="114" />
 <icon src="icons/ios/retina_ipad.png" gap:platform="ios" width="144" height="144" 
 <icon src="icons/android/drawable-mdpi/ic_launcher.png" gap:platform="android" gap:density="mdpi" />
 <icon src="icons/android/drawable-hdpi/ic_launcher.png" gap:platform="android" gap:density="hdpi" />
-<icon src="icons/android/drawable-xhdpi/ic_launcher.png" gap:platform="android" gap:density="xhdpi" />
+<icon src="icons/android/drawable-xhdpi/ic_launcher.png" gap:platform="android" gap:density="xhdpi" /-->
 
 
 </widget>
