@@ -8,18 +8,32 @@
     <name>US Inventors History Quiz</name>
  
     <description>
-        This quiz tests your knowledge of inventors in United State's history.  Please note: this app is part of my PhD research.  You are welcome to download and play this game, but if you want to help me graduate and participate in this study, please get more information and register at: http://saucers.cups.cs.cmu.edu/~rahunt/quiz/index.html
+        This quiz tests your knowledge of inventors in United State's history.  Please note: this app is part of my PhD research.  You are welcome to download and play this game, but if you want to help me graduate and participate in this study, please get more information and register at: http://saucers.cups.cs.cmu.edu/appinventors/index.html
     </description>
  
-    <author href="http://saucers.cups.cs.cmu.edu/~rahunt/quiz/index.html" email="balebako@cmu.edu">
+    <author href="http://saucers.cups.cs.cmu.edu/inventorsapp/index.html" email="balebako@cmu.edu">
         Rebecca Hunt Balebako
     </author>
- <content src="index.html" />
+    <content src="index.html" />
         <access origin="*" />
         <preference name="Fullscreen" value="true" />
         <preference name="WebViewBounce" value="true" /> 
-    <feature name="http://api.phonegap.com/1.0/notification"/>
-    <gap:plugin name="com.phonegap.plugins.childbrowser" />
+
+
+<gap:splash src="splash/ios/Default.png" width="320" height="480" />
+<gap:splash src="splash/ios/Default_at_2x.png" width="640" height="960" />
+<gap:splash src="splash/ios/Default-Landscape.png" width="1024" height="768" />
+<gap:splash src="splash/ios/Default-Portrait.png" width="768" height="1024" />
+<!--gap:splash gap:density="ldpi" gap:platform="android" src="splash/android/screen-ldpi-portrait.png" />
+<gap:splash gap:density="mdpi" gap:platform="android" src="splash/android/screen-mdpi-portrait.png" />
+<gap:splash gap:density="hdpi" gap:platform="android" src="splash/android/screen-hdpi-portrait.png" />
+<gap:splash gap:density="xhdpi" gap:platform="android" src="splash/android/-->
 
 <icon src="icon.png" />
+<icon src="icons/ios/classic.png" gap:platform="ios" width="57" height="57" />
+<icon src="icons/ios/ipad.png" gap:platform="ios" width="72" height="72" />
+<icon src="icons/ios/retina.png" gap:platform="ios" width="114" height="114" />
+<icon src="icons/ios/retina_ipad.png" gap:platform="ios" width="144" height="144" 
+
+
 </widget>
