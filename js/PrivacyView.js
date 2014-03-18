@@ -3,7 +3,6 @@ var PrivacyView = function(app) {
 	this.qid = app.qid;
         this.el = $('<div/>');
         this.el.on('click', '#exit', function(){		
-
 		app.myLog("Exit", "Privacy Notice");
 		navigator.app.exitApp();
 	   });

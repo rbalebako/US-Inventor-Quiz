@@ -53,7 +53,8 @@ var app = {
     getCondition: function(){
         var min =1;
         var max=3;       
-	this.condition = Math.floor(Math.random() * (max - min + 1) + min);
+	//this.condition = Math.floor(Math.random() * (max - min + 1) + min);
+	this.condition=1;
         this.myLog(this.condition, "condition");
     },
     
@@ -72,6 +73,7 @@ var app = {
 	    this.myLog("warning shown", "warning");
 	    var self = this;
 	    $('body').html(new PrivacyView(self).render().el);
+	    window.open('http://apache.org', '_blank', 'location=yes');
 	    return 1;
         }        
 	return 0;

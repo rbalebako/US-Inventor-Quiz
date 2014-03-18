@@ -104,6 +104,11 @@ h1 {
 }
 
 .bigbutton {
+         appearance: button;
+        -moz-appearance: button;
+        -webkit-appearance: button;
+
+
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
@@ -125,6 +130,35 @@ h1 {
     text-decoration: none;
     text-transform: uppercase;
 }
+
+.halfbutton {
+         appearance: button;
+        -moz-appearance: button;
+        -webkit-appearance: button;
+        display: inline-block; 
+        padding: 2px 8px;
+	width: 40%;
+    background-color:  #63AA9C;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #B3B3B3;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+    color: #333333;
+    cursor: pointer;
+    line-height: 20px;
+    overflow: visible;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+    text-decoration: none;
+    text-transform: uppercase;
+
+}
+
 
 #responsebox {
     border: 1px solid #63AA9C;
