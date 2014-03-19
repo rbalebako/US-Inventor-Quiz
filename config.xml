@@ -2,8 +2,8 @@
 <widget xmlns       = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.rebeccahunt.historyquiz"
-        versionCode = "10"
-        version     = "1.1.0">
+        versionCode = "11"
+        version     = "1.1.1">
  
     <name>US Inventors History Quiz</name>
  
@@ -33,6 +33,5 @@
 <icon src="icons/android/drawable-mdpi/ic_launcher.png" gap:platform="android" gap:density="mdpi" />
 <icon src="icons/android/drawable-hdpi/ic_launcher.png" gap:platform="android" gap:density="hdpi" />
 <icon src="icons/android/drawable-xhdpi/ic_launcher.png" gap:platform="android" gap:density="xhdpi" /-->
-
 
 </widget>
