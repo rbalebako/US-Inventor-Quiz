@@ -106,41 +106,61 @@ var app = {
     // based on the QId determine which page and question to show
       getQId: function() {
         var self = this;
-        var qidMatch = /^#qid\/(\d{1,})/;
+        var qidMatch = /^#qid\/(\w{1,})/;
         var hash = window.location.hash;          
 	var p=-1;
-
-       var match = hash.match(qidMatch);
        
+	// if no hash we are just starting
 	if (!hash) {
-	    this.qid=p;
+	    hashmatch = 'begin';
 	}
-        else if (match && match.length>1 ) {
-            p = Number(match[1]);
-            this.qid=p+1;
-            this.myLog("on question " + this.qid + " of "  + this.store.totalQuestions(), "questionMatch" );                     }
-        else {
-            this.myLog("error with hash not matching match: " + match + ", hash: " + hash, "error");
-        }
+	// is there a hashmatch?
+        else if (hashmatch && hashmatch.length>1 ) {
+	    var hashmatch = hash.match(qidMatch);
+	    var pagematch =  hashmatch.match(/(\d{1,})/);
 
-	if (p==-1) {
-	   if (!this.showNotice('begin') ) {
-	       $('body').html(new WelcomeView(self).render().el);
-	       return;
-	   }
-	} else if (p==0) {
-	    this.myLog("email", this.emailID);
-	    if ( this.showNotice('middle') ) {
-		return;
+	    // is it a digit, indicating a page number
+	    if (pagematch && pagematch.length>1) {
+		p = Number(pmatch[1]);
+		this.qid=p+1;
+		this.myLog("on question " + this.qid + " of "  + this.store.totalQuestions(),
+			   "questionMatch" );                 
+		if (p>= this.store.totalQuestions()) {
+		    this.myLog(this.qid, "finished");
+		    if(!this.showNotice('end') ) {
+			$('body').html(new ThankYouView(this.store).render().el);
+		    }
+		    return;
+		}
 	    }
-	} else if (p>= this.store.totalQuestions()) {
-	    this.myLog(this.qid, "finished");
-	    if(!this.showNotice('end') ) {
-		$('body').html(new ThankYouView(this.store).render().el);
+
+	    // if not a digit, then it is a special case
+	    else { // the first page
+		if (hashmatch=='begin') {
+		    if (!this.showNotice('begin') ) {
+			$('body').html(new InstructionView(self).render().el);
+			return;
+		    }
+		}
+		// just saw instructions, show the email page
+		else if (hashmatch=='instruction') {
+		    $('body').html(new EmailView(self).render().el);
+		    return;
+		} 
+		// just saw email, store it and go to home page
+		else if (hashmatch=='email') {
+		    this.qid=0; // go to first question after this
+		    this.myLog("email", this.emailID);
+		    if ( this.showNotice('middle') ) {
+			return;
+		    }
+		    $('body').html(new HomeView(self.store, self.qid).render().el);
+		}		
+		else {
+		    this.myLog("error with hash not matching match: " + match + ", hash: " + hash, "error");
+		}
 	    }
-	    return;
-	}
-	$('body').html(new HomeView(self.store, self.qid).render().el);
+
         
     },
     
