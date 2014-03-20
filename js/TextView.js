@@ -26,7 +26,10 @@ var TextView = function(app) {
     this.render=function() {
         var self=this;
 	var contentHTML = 'ERROR';
-	if (this.curPage == 'instructions') {
+        this.el.html(TextView.textTpl(self)); 
+        this.content = this.el.find("#content");
+
+	if (this.curPage == 'instruction') {
 	    contentHTML = '<p>You are about to show off how much you know about inventors in US History! You will read a super-short biography of an inventor, and then select from a list of inventions.  You can use your knowledge of the inventor, of of history in general, to make your selection.</p><p>Good Luck</p> <a href="#qid/'+this.nextPage+ '"  id="nextbutton" class="ui-btn ui-corner-all ui-shadow halfbutton">Continue</a>';
 	} 
 	else if (this.curPage == 'email') {
@@ -36,11 +39,9 @@ var TextView = function(app) {
 	    this.correctText = app.correctText;
 	    contentHTML = '<p>You got '+this.correctText +' questions correct.</p><p>Tomorrow you will recieve an email with a link to a short survey about this app.  To complete this study and receive payment, you must fill out the survey within one day of receiving the email, so fill the survey out as soon as possible.  Thank you! </p>';
 	}
-	//	this.content.html(contentHTML);
-	self.contentHTML = contentHTML;
+		this.content.html(contentHTML);
+	//	self.contentHTML = contentHTML;
 
-        this.el.html(TextView.textTpl(self)); 
-        this.content = this.el.find("#content");
         return this;
     },
         

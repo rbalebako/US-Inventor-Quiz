@@ -117,7 +117,7 @@ var app = {
 	// if no hash we are just starting
 	if (!hash) {
 	    this.nextPage='email';
-	    this.curPage = 'instructions';
+	    this.curPage = 'instruction';
 	    this.showTextPage();
 	    return;
 	}
@@ -155,6 +155,7 @@ var app = {
  
  	    else {
 		 if (this.curPage=='instruction') {
+		     console.log("Current page is instruction");
 		     this.nextPage='email'; 
 		 } 
 		else if (this.curPage=='email') {
