@@ -2,6 +2,8 @@ var TextView = function(app) {
     this.initialize = function() {
 	this.curPage = app.curPage;
 	this.nextPage = app.nextPage;
+	this.correctAnswers = app.store.correctAnswers;
+	this.totalQuestions = app.store.totalQuestions();
         this.el = $('<div/>');
         var self = this;
 	if (this.curPage == 'email') {
@@ -35,7 +37,7 @@ var TextView = function(app) {
 	    contentHTML = '<p>Before we begin, please enter the your email.</p><input type="text" name="emailid" id="emailid"/><div id="responsebox"><div id="response"></div><a href="#qid/'+this.nextPage+ '" id="emailbutton" class="ui-shadow ui-btn ui-corner-all bigbutton hidebutton">Continue</a>';
 	}
 	else if (this.curPage == 'thankyou') {
-	    contentHTML = '<p>You got {{correctAnswers}} out of {{totalQuestions}} questions correct.</p><p>Tomorrow you will recieve an email with a link to a short survey about this app.  To complete this study and receive payment, you must fill out the survey within one day of receiving the email, so fill the survey out as soon as possible.  Thank you! </p>';
+	    contentHTML = '<p>You got '+this.correctAnswers+' out of ' +this.totalQuestions +' questions correct.</p><p>Tomorrow you will recieve an email with a link to a short survey about this app.  To complete this study and receive payment, you must fill out the survey within one day of receiving the email, so fill the survey out as soon as possible.  Thank you! </p>';
 	}
 	this.content.html(contentHTML);
         return this;

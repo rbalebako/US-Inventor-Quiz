@@ -53,8 +53,8 @@ var app = {
     getCondition: function(){
         var min =1;
         var max=3;       
-	//this.condition = Math.floor(Math.random() * (max - min + 1) + min);
-	this.condition=3;
+	this.condition = Math.floor(Math.random() * (max - min + 1) + min);
+	//	this.condition=3;
         this.myLog(this.condition, "condition");
     },
     
@@ -148,6 +148,7 @@ var app = {
 		    this.showTextPage();
 		    return;
 		}
+		$('body').html(new HomeView(self.store, self.nextPage).render().el);
 	    }
  
  	    else {
@@ -166,7 +167,6 @@ var app = {
 	else {
 	    console.log("hash but not hashmap found nothing matched " + hash);
 	}
-	$('body').html(new HomeView(self.store, self.nextPage).render().el);
 
     },
     
