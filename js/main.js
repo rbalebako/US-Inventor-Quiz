@@ -144,6 +144,8 @@ var app = {
 		    // at the end of the questions
 		    this.curPage='thankyou';
 		    this.nextPage='thankyou';
+		    this.correctText = this.store.correctAnswers + ' out of '+ this.store.totalQuestions();  // I know I'm hardcoding English into my code
+		    this.totalQuest
 		    this.myLog(this.curPage, "finished");
 		    this.showTextPage();
 		    return;
