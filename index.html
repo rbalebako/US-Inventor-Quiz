@@ -27,15 +27,53 @@
 	<link href="css/styles.css" rel="stylesheet">
         <title>US Inventors: A History Quiz</title>
     </head>
-    <body>
-        <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device 3</p>
-                <p class="event received">Device is Ready 3</p>
-            </div>
-        </div>
+<div data-role="page">
+    
+<script id="home-tpl" type="text/x-handlebars-template">
+    <div data-role="header" data-position="fixed"><h1>Question {{id}} of 11</h1></div>
+    <div class="content">
+      <p><image class='question-image' src='img/{{qimage}}' />
+        {{qtext}}<br style="clear: both;" /></p>
+      <div>
+        <span class='answer-list'></span>
+      </div>
+    </div>
+    <div id="responsebox">
+    <div id="response"></div>  
+    <a href='#qid/{{id}}'  id="nextbutton" class="ui-btn ui-corner-all ui-shadow bigbutton hidebutton"> Next</a>
+    </div>       
+    <div id="footer"></div>
+</script>
 
+<script id="answer-li-tpl" type="text/x-handlebars-template">
+    <form>
+    {{#.}} 
+   <input type="radio" name="answer" value="{{this.correct}}" id="{{this.id}}"/><label for="{{this.id}}" class="ui-shadow ui-btn ui-corner-all">{{this.atext}}</label></input><br/>
+    {{/.}} 
+    </ul>
+    </form>
+</script>
+
+<script id="text-tpl" type="text/x-handlebars-template">    
+    <div class='header'><h1>US Inventors History Quiz</h1></div>
+     <div id="content">
+    </div>
+     <div id='footer'>
+       <a href="http://saucers.cups.cs.cmu.edu/inventorsapp/index.html">About</a>
+     </div>   
+</script>
+    
+<script id="privacynotice-tpl" type="text/x-handlebars-template">
+    <div  data-role="header" data-position="fixed"></div>
+     <div data-role="content">
+       <img src="http://saucers.cups.cs.cmu.edu/inventorsapp/privacynotice.png" /><br/>
+       <a href='#qid/{{qid}}'  id="nextbutton" 
+        class="ui-btn ui-corner-all ui-shadow halfbutton">Continue</a>
+     </div>
+     <div id="footer">
+    </div>
+</script>
+</div>    
 
 <script type="text/javascript" charset="utf-8" src="js/phonegap.js"></script>
 <script type="text/javascript" charset="utf-8" src="lib/jquery-1.8.2.min.js"></script>
