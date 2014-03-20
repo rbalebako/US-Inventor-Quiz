@@ -9,18 +9,6 @@
 <body>
 <div data-role="page">
     
-<script id="email-tpl" type="text/x-handlebars-template">    
-    <div class='header'><h1>US Inventors History Quiz</h1></div>
-     <div data-role="content">
-    <p>Before we begin, please enter the your email.</p>
-     <input type="text" name="emailid" id="emailid"/>
-    <div id="responsebox"><div id="response"></div>
-    <a href='#qid/email' id="emailbutton" class="ui-shadow ui-btn ui-corner-all bigbutton hidebutton">Continue</a>
-    </div>
-     <div id='footer'>
-       <a href="http://saucers.cups.cs.cmu.edu/inventorsapp/index.html">About</a>
-     </div>   
-</script>
     
 <script id="home-tpl" type="text/x-handlebars-template">
     <div data-role="header" data-position="fixed"><h1>Question {{id}} of 11</h1></div>
@@ -46,46 +34,25 @@
     </ul>
     </form>
 </script>
- 
-<script id="thankyou-tpl" type="text/x-handlebars-template">
-    <div  data-role="header" data-position="fixed"><h1>Thank You </h1></div>
-     <div data-role="content">
-    <p>You got {{correctAnswers}} out of {{totalQuestions}} questions correct.</p>
-    <p>Tomorrow you will recieve an email with a link to a short survey about this app.  To complete this study and receive payment, you must fill out the survey within one day of receiving the email, so fill the survey out as soon as possible.  Thank you! </p>
-       <a href='#qid/exit' id="exit" 
-        class="ui-btn ui-corner-all ui-shadow halfbutton">Exit</a>
-</div>
-      <div id="footer">
-<a href="http://saucers.cups.cs.cmu.edu/inventorsapp/index.html">About</a>
-</div>
-</script>
 
-
-<script id="instruction-tpl" type="text/x-handlebars-template">
-    <div  data-role="header" data-position="fixed"><h1>How this works</h1></div>
-     <div data-role="content">
-    <p>You are about to show off how much you know about inventors in US History! You will read a super-short biography of an inventor, and then select from a list of inventions.  You can use your knowledge of the inventor, of of history in general, to make your selection.</p>
-<p>Good Luck</p>
-  <a href='#qid/email'  id="nextbutton" 
-     class="ui-btn ui-corner-all ui-shadow halfbutton">Continue</a>
-</div>
-      <div id="footer">
-<a href="http://saucers.cups.cs.cmu.edu/inventorsapp/index.html">About</a>
-</div>
+<script id="text-tpl" type="text/x-handlebars-template">    
+    <div class='header'><h1>US Inventors History Quiz</h1></div>
+     <div id="content">
+    </div>
+     <div id='footer'>
+       <a href="http://saucers.cups.cs.cmu.edu/inventorsapp/index.html">About</a>
+     </div>   
 </script>
     
 <script id="privacynotice-tpl" type="text/x-handlebars-template">
     <div  data-role="header" data-position="fixed"></div>
      <div data-role="content">
        <img src="http://saucers.cups.cs.cmu.edu/inventorsapp/privacynotice.png" /><br/>
-       <a href='#qid/exit' id="exit" 
-        class="ui-btn ui-corner-all ui-shadow halfbutton">Exit</a>
        <a href='#qid/{{qid}}'  id="nextbutton" 
         class="ui-btn ui-corner-all ui-shadow halfbutton">Continue</a>
      </div>
      <div id="footer">
-<!--a href="http://cups.cs.cmu.edu/inventors/index.html">About Us</a-->
-</div>
+    </div>
 </script>
 
 
@@ -97,8 +64,7 @@
 <script type="text/javascript" charset="utf-8" src="lib/iscroll.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/storage/memory-store.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/HomeView.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/ThankYouView.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/WelcomeView.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/TextView.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/PrivacyView.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/main.js"></script>
 

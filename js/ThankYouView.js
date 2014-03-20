@@ -2,11 +2,16 @@ var ThankYouView = function(store) {
     this.initialize = function() {
         this.totalQuestions = store.totalQuestions();
         this.correctAnswers = store.correctAnswers;
-        this.el = $('<div/>');
+	//        this.el = $('<div/>');
 
-        this.el.on('click', '#exit', function(){
-		navigator.app.exitApp();
-	   });
+	/*        this.el.on('click', '#exit', function(){
+		if(navigator.app){
+		    navigator.app.exitApp();
+		}else if(navigator.device){
+		    navigator.device.exitApp();
+		}
+
+		});*/
 
     
     },

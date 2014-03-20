@@ -1,7 +1,7 @@
 var app = {
 
     registerEvents: function () {
-	$(window).on('hashchange', $.proxy(this.getQId, this));           
+	$(window).on('hashchange', $.proxy(this.getPage, this));           
 	//	document.addEventListener("menubutton", onMenuKeyDown, false);
 
 
@@ -54,22 +54,23 @@ var app = {
         var min =1;
         var max=3;       
 	//this.condition = Math.floor(Math.random() * (max - min + 1) + min);
-	this.condition=1;
+	this.condition=3;
         this.myLog(this.condition, "condition");
     },
     
     // if we are at beginning middle or end, check whether they should get a privacy notification based on their condition
-    showNotice: function(currentPlace) {
-	console.log("Checking whether to show notice at "+currentPlace+ " with condition "+ this.condition);
+    showNotice: function() {
+	console.log("Checking whether to show notice at "+this.curPage+ " with condition "+ this.condition);
         if (this.alertShown>0) {
             return 0;
         }
-	this.myLog(currentPlace, "check condition at place");
-        if ((this.condition==1 && currentPlace=='begin') ||
-            (this.condition==2 && currentPlace=='middle') ||
-            (this.condition==3 && currentPlace=='end')
+	this.myLog(this.curPage, "check condition at place");
+        if ((this.condition==1 && this.curPage=='instructions') ||
+            (this.condition==2 && this.curPage=='0') ||
+            (this.condition==3 && this.curPage=='thankyou')
            ) { 
 	    this.alertShown++;
+	    this.nextPage = this.curPage;
 	    this.myLog("warning shown", "warning");
 	    var self = this;
 	    $('body').html(new PrivacyView(self).render().el);
@@ -104,66 +105,79 @@ var app = {
 
 
     // based on the QId determine which page and question to show
-      getQId: function() {
+    // so QId should be the page to show
+    // it can be a word or digit.
+    // we set QId before loading page to what we want the *next* page to be
+      getPage: function() {
         var self = this;
-        var qidMatch = /^#qid\/(\w{1,})/;
-        var hash = window.location.hash;          
-	var p=-1;
+        var hash = window.location.hash;
+	var patternString = /^#qid\/(\w{1,})/;     
+	var patternDigit = /(\d{1,})/;
        
 	// if no hash we are just starting
 	if (!hash) {
-	    hashmatch = 'begin';
+	    this.nextPage='email';
+	    this.curPage = 'instructions';
+	    this.showTextPage();
+	    return;
 	}
+	var wordmatchArray = hash.match(patternString);
+
 	// is there a hashmatch?
-        else if (hashmatch && hashmatch.length>1 ) {
-	    var hashmatch = hash.match(qidMatch);
-	    var pagematch =  hashmatch.match(/(\d{1,})/);
+        if (wordmatchArray && wordmatchArray.length>1 ) {
+	    var wordmatch = wordmatchArray[1];	 
+	    var digitmatchArray =  wordmatch.match(patternDigit);
+
+	    this.curPage = wordmatch;
 
 	    // is it a digit, indicating a page number
-	    if (pagematch && pagematch.length>1) {
-		p = Number(pmatch[1]);
-		this.qid=p+1;
-		this.myLog("on question " + this.qid + " of "  + this.store.totalQuestions(),
-			   "questionMatch" );                 
-		if (p>= this.store.totalQuestions()) {
-		    this.myLog(this.qid, "finished");
-		    if(!this.showNotice('end') ) {
-			$('body').html(new ThankYouView(this.store).render().el);
-		    }
+	    if (digitmatchArray && digitmatchArray.length>1) {
+		this.curPage =  Number(digitmatchArray[1]);
+		this.nextPage = this.curPage + 1; // add one to symbolize next page
+		this.myLog("on question " + this.nextPage + " of "  + this.store.totalQuestions(),
+			   "questionMatch" );         
+		if (this.curPage == 0 ) {
+		    // just got email, store it 
+		    this.myLog("email", this.emailID);
+		}
+		if (this.curPage>= this.store.totalQuestions()) {
+		    // at the end of the questions
+		    this.curPage='thankyou';
+		    this.nextPage='thankyou';
+		    this.myLog(this.curPage, "finished");
+		    this.showTextPage();
 		    return;
 		}
 	    }
-
-	    // if not a digit, then it is a special case
-	    else { // the first page
-		if (hashmatch=='begin') {
-		    if (!this.showNotice('begin') ) {
-			$('body').html(new InstructionView(self).render().el);
-			return;
-		    }
-		}
-		// just saw instructions, show the email page
-		else if (hashmatch=='instruction') {
-		    $('body').html(new EmailView(self).render().el);
-		    return;
-		} 
-		// just saw email, store it and go to home page
-		else if (hashmatch=='email') {
-		    this.qid=0; // go to first question after this
-		    this.myLog("email", this.emailID);
-		    if ( this.showNotice('middle') ) {
-			return;
-		    }
-		    $('body').html(new HomeView(self.store, self.qid).render().el);
+ 
+ 	    else {
+		 if (this.curPage=='instruction') {
+		     this.nextPage='email'; 
+		 } 
+		else if (this.curPage=='email') {
+		    this.nextPage=0; // go to first question after this
 		}		
 		else {
-		    this.myLog("error with hash not matching match: " + match + ", hash: " + hash, "error");
+		    this.myLog("error with hash not matching match: " + wordmatch + ", hash: " + hash, "error");
 		}
+		this.showTextPage();
 	    }
+	}
+	else {
+	    console.log("hash but not hashmap found nothing matched " + hash);
+	}
+	$('body').html(new HomeView(self.store, self.nextPage).render().el);
 
-        
     },
     
+    showTextPage: function() {
+	console.log("show text page called with " + this.curPage );
+	if (! this.showNotice() ) {
+	    var self = this;
+	    $('body').html(new TextView(self).render().el);	    
+	}
+	return;
+    },
    
     initialize: function() {	
         this.alertShown=0;
@@ -174,7 +188,7 @@ var app = {
         this.registerEvents();
         var self = this;
         this.store = new MemoryStore(function() {
-            self.getQId();
+            self.getPage();
         });
 
     }

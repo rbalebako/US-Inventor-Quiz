@@ -1,12 +1,12 @@
-var InstructionView = function(app) {
+var TextView = function(app) {
     this.initialize = function() {
-	this.qid = app.qid;
-
+	this.curPage = app.curPage;
+	this.nextPage = app.nextPage;
     },
      
     this.render=function() {
         var self=this;
-        this.el.html(InstructionView.instructionTpl(self)); 
+        this.el.html(TextView.textTpl(self)); 
         return this;
     },
         
@@ -14,4 +14,4 @@ var InstructionView = function(app) {
  
 }
  
-InstructionView.privacyTpl = Handlebars.compile($("#instruction-tpl").html());
+TextView.textTpl = Handlebars.compile($("#text-tpl").html());

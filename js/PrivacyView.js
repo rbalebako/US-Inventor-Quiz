@@ -1,11 +1,16 @@
 var PrivacyView = function(app) {
     this.initialize = function() {
-	this.qid = app.qid;
+	this.qid = app.nextPage;
         this.el = $('<div/>');
-        this.el.on('click', '#exit', function(){		
-		app.myLog("Exit", "Privacy Notice");
-		navigator.app.exitApp();
-	   });
+	/* this.el.on('click', '#exit', function(){		
+	       		app.myLog("Exit", "Privacy Notice");
+
+		if(navigator.app){
+		    navigator.app.exitApp();
+		}else if(navigator.device){
+		    navigator.device.exitApp();
+		}
+		});*/
 
     },
      
