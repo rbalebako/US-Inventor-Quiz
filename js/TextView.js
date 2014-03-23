@@ -6,20 +6,22 @@ var TextView = function(app) {
         var self = this;
 	if (this.curPage == 'email') {
 	    this.el.on('keyup', '#emailid', function(){
-		email =  $('#emailid').val();
-		if (self.validateEmail(email) ) {
-		    app.emailID=  $('#emailid').val();
-		    $('#response').html("Looks good!") ;
-		    $('#emailbutton').addClass("ui-shadow ui-btn ui-corner-all");
-		    $('#emailbutton').removeClass("hidebutton");
-		}
-		else {
-		    $('#response').html("That doesn't seem to be a valid email address yet.") ;
-		}
-
-	    });
-
-
+		    email =  $('#emailid').val();
+		    if (self.validateEmail(email) ) {
+			app.emailID=  $('#emailid').val();
+			$('#response').html("Looks good!") ;
+			$('#emailbutton').addClass("bigbutton");
+			$('#emailbutton').removeClass("hidebutton");
+		    }
+		    else {
+			$('#response').html("That doesn't seem to be a valid email address yet.") ;
+		    }
+		    
+		});
+	    this.el.on('click', '#emailbutton', function() {
+		    app.myLog("email", app.emailID);
+		});
+	    
 	}
     },
      
@@ -30,10 +32,10 @@ var TextView = function(app) {
         this.content = this.el.find("#content");
 
 	if (this.curPage == 'instruction') {
-	    contentHTML = '<p>You are about to show off how much you know about inventors in US History! You will read a super-short biography of an inventor, and then select from a list of inventions.  You can use your knowledge of the inventor, of of history in general, to make your selection.</p><p>Good Luck</p> <a href="#qid/'+this.nextPage+ '"  id="nextbutton" class="ui-btn ui-corner-all ui-shadow halfbutton">Continue</a>';
+	    contentHTML = '<p>You are about to show off how much you know about inventors in US History! You will read a super-short biography of an inventor, and then select from a list of inventions.  You can use your knowledge of the inventor, of of history in general, to make your selection.</p><p>Good Luck</p> <a href="#qid/'+this.nextPage+ '"  id="nextbutton" class="halfbutton">Continue</a>';
 	} 
 	else if (this.curPage == 'email') {
-	    contentHTML = '<p>Before we begin, please enter the your email.</p><input type="text" name="emailid" id="emailid"/><div id="responsebox"><div id="response"></div><a href="#qid/'+this.nextPage+ '" id="emailbutton" class="ui-shadow ui-btn ui-corner-all bigbutton hidebutton">Continue</a>';
+	    contentHTML = '<p>Before we begin, please enter the your email.</p><input type="text" name="emailid" id="emailid"/><div id="responsebox"><div id="response"></div><a href="#qid/'+this.nextPage+ '" id="emailbutton" class="bigbutton hidebutton">Continue</a>';
 	}
 	else if (this.curPage == 'thankyou') {
 	    this.correctText = app.correctText;

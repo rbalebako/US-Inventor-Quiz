@@ -1,6 +1,6 @@
 var PrivacyView = function(app) {
     this.initialize = function() {
-	this.qid = app.nextPage;
+	this.qid = app.curPage;
         this.el = $('<div/>');
 	/* this.el.on('click', '#exit', function(){		
 	       		app.myLog("Exit", "Privacy Notice");

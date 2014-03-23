@@ -20,8 +20,8 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <!--meta name="format-detection" content="telephone=no" /-->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 
 	<link rel="stylesheet" href="css/mobile.css" />
 	<link href="css/styles.css" rel="stylesheet">
@@ -40,7 +40,7 @@
     </div>
     <div id="responsebox">
     <div id="response"></div>  
-    <a href='#qid/{{id}}'  id="nextbutton" class="ui-btn ui-corner-all ui-shadow bigbutton hidebutton"> Next</a>
+    <a href='#qid/{{nextPage}}' id="nextbutton" class="bigbutton hidebutton"> Next</a>
     </div>       
     <div id="footer"></div>
 </script>
@@ -68,7 +68,7 @@
      <div data-role="content">
        <img src="http://saucers.cups.cs.cmu.edu/inventorsapp/privacynotice.png" /><br/>
        <a href='#qid/{{qid}}'  id="nextbutton" 
-        class="ui-btn ui-corner-all ui-shadow halfbutton">Continue</a>
+        class="halfbutton">Continue</a>
      </div>
      <div id="footer">
     </div>
