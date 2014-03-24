@@ -187,7 +187,7 @@ var app = {
     },
    
     onDeviceReady: function() {
-	console.log("onDeviceReady Called");
+	this.myLog("onDeviceReady Called", "onDeviceReady");
 	this.myLog("app started", "starting");
 	if (window.device) {
 	    this.myLog(' Device Name: '     + device.name     +  
