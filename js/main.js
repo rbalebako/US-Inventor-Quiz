@@ -4,6 +4,7 @@ var app = {
 	$(window).on('hashchange', $.proxy(this.getHash, this));           
 	//	document.addEventListener("menubutton", onMenuKeyDown, false);
 
+	document.addEventListener("deviceready", this.onDeviceReady, false);
 
     // Check of browser supports touch events...
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
@@ -162,6 +163,7 @@ var app = {
 	    textPage=1;
 	    this.correctText = this.store.correctAnswers + ' out of '+ this.store.totalQuestions();  // I know I'm hardcoding English into my code
 	    this.myLog(this.emailID, "finished");
+	    this.myLog(this.store.correctAnswers, "correct");
 	}		
 	else if (this.curPage=='email') {
 	    this.nextPage='1'; // go to first question after this
@@ -195,11 +197,14 @@ var app = {
 	return;
     },
    
+    onDeviceReady: function() {
+	this.myLog("app started", "starting");
+	this.getPhoneInfo();
+    },
+
     initialize: function() {	
         this.alertShown=0;
 	this.userID=this.makeid();
-	this.myLog("Loading", "loading");
-	this.getPhoneInfo();
         this.getCondition();
         this.registerEvents();
         var self = this;
