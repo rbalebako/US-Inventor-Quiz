@@ -196,14 +196,16 @@ var app = {
             self.getHash();
         });
 	if (window.device) {
+	    this.myLog('window.device', 'found');
 	    this.myLog(' Device Name: '     + device.name     +  
 		       ', Device PhoneGap: ' + device.phonegap + 
 		       ', Device Platform: ' + device.platform + 
 		       ', Device Version: '  + device.version, 
 		       "deviceinfo" );
 	} 
-
-
+	else {
+	    this.myLog('not a device', 'nope');
+	}
     }
 
 };
