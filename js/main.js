@@ -185,18 +185,6 @@ var app = {
 	return;
     },
    
-    onDeviceReady: function() {
-	this.myLog("onDeviceReady Called", "onDeviceReady");
-	this.myLog("app started", "starting");
-	if (window.device) {
-	    this.myLog(' Device Name: '     + device.name     +  
-		       ', Device PhoneGap: ' + device.phonegap + 
-		       ', Device Platform: ' + device.platform + 
-		       ', Device Version: '  + device.version, 
-		       "deviceinfo" );
-	} 
-
-    },
 
     initialize: function() {	
         this.alertShown=0;
@@ -207,12 +195,19 @@ var app = {
         this.store = new MemoryStore(function() {
             self.getHash();
         });
+	if (window.device) {
+	    this.myLog(' Device Name: '     + device.name     +  
+		       ', Device PhoneGap: ' + device.phonegap + 
+		       ', Device Platform: ' + device.platform + 
+		       ', Device Version: '  + device.version, 
+		       "deviceinfo" );
+	} 
+
 
     }
 
 };
 
-document.addEventListener("deviceready", app.onDeviceReady, false);
 app.initialize();
 
 
