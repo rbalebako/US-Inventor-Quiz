@@ -4,7 +4,6 @@ var app = {
 	$(window).on('hashchange', $.proxy(this.getHash, this));           
 	//	document.addEventListener("menubutton", onMenuKeyDown, false);
 
-	document.addEventListener("deviceready", this.onDeviceReady, false);
 
     // Check of browser supports touch events...
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
@@ -213,10 +212,8 @@ var app = {
 
 };
 
-
-
+document.addEventListener("deviceready", app.onDeviceReady, false);
 app.initialize();
-
 
 
 
