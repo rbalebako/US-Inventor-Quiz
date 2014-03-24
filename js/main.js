@@ -78,17 +78,6 @@ var app = {
         }        
 	return 0;
     },
-    
-    // get information about their phone for debugging
-    getPhoneInfo: function() {
-	if (window.device) {
-	    this.myLog(' Device Name: '     + device.name     +  
-		       ', Device PhoneGap: ' + device.phonegap + 
-		       ', Device Platform: ' + device.platform + 
-		       ', Device Version: '  + device.version, 
-		       "deviceinfo" );
-	} 
-    },
 
     //create a 15 variable long id which we hope will uniquely identify user
     makeid:function()    {
@@ -198,8 +187,16 @@ var app = {
     },
    
     onDeviceReady: function() {
+	console.log("onDeviceReady Called");
 	this.myLog("app started", "starting");
-	this.getPhoneInfo();
+	if (window.device) {
+	    this.myLog(' Device Name: '     + device.name     +  
+		       ', Device PhoneGap: ' + device.phonegap + 
+		       ', Device Platform: ' + device.platform + 
+		       ', Device Version: '  + device.version, 
+		       "deviceinfo" );
+	} 
+
     },
 
     initialize: function() {	
