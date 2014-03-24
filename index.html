@@ -84,6 +84,25 @@
 <script type="text/javascript" charset="utf-8" src="js/TextView.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/PrivacyView.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/main.js"></script>
+ <script type="text/javascript" charset="utf-8">
 
+    // Wait for PhoneGap to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // PhoneGap is ready
+    //
+    function onDeviceReady() {
+
+        deviceinfo= 'Device Name: '     + device.name     + '<br />' + 
+                            'Device PhoneGap: ' + device.phonegap + '<br />' + 
+                            'Device Platform: ' + device.platform + '<br />' + 
+                            'Device UUID: '     + device.uuid     + '<br />' + 
+                            'Device Version: '  + device.version  + '<br />';
+
+      app.myLog(deviceinfo);
+    }
+
+    </script>
     </body>
 </html>

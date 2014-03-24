@@ -195,7 +195,7 @@ var app = {
         this.store = new MemoryStore(function() {
             self.getHash();
         });
-	if (window.device) {
+	if (device) {
 	    this.myLog('window.device', 'found');
 	    this.myLog(' Device Name: '     + device.name     +  
 		       ', Device PhoneGap: ' + device.phonegap + 
