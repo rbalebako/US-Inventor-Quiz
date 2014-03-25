@@ -202,6 +202,7 @@ var app = {
 
 
     initialize: function() {	
+	console.log("initilize called");
         this.alertShown=0;
 	this.userID=this.makeid();
         this.getCondition();
