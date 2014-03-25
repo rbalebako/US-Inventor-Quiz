@@ -195,6 +195,7 @@ var app = {
         this.store = new MemoryStore(function() {
             self.getHash();
         });
+	app.myLog("at device", "device");
 	if (device) {
 	    this.myLog('window.device', 'found');
 	    this.myLog(' Device Name: '     + device.name     +  

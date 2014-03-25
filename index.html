@@ -87,12 +87,13 @@
  <script type="text/javascript" charset="utf-8">
 
     // Wait for PhoneGap to load
-    //
+     //
     document.addEventListener("deviceready", onDeviceReady, false);
 
     // PhoneGap is ready
     //
     function onDeviceReady() {
+    app.myLog("deviceready", "deviceready");
 
         deviceinfo= 'Device Name: '     + device.name     + '<br />' + 
                             'Device PhoneGap: ' + device.phonegap + '<br />' + 
