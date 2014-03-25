@@ -192,21 +192,16 @@ var app = {
         this.getCondition();
         this.registerEvents();
         var self = this;
-        this.store = new MemoryStore(function() {
-            self.getHash();
-        });
-	app.myLog("at device", "device");
 	if (device) {
 	    this.myLog('window.device', 'found');
-	    this.myLog(' Device Name: '     + device.name     +  
-		       ', Device PhoneGap: ' + device.phonegap + 
-		       ', Device Platform: ' + device.platform + 
-		       ', Device Version: '  + device.version, 
-		       "deviceinfo" );
 	} 
 	else {
 	    this.myLog('not a device', 'nope');
 	}
+        this.store = new MemoryStore(function() {
+            self.getHash();
+        });
+
     }
 
 };
