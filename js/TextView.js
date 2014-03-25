@@ -1,9 +1,9 @@
 var TextView = function(app) {
     this.initialize = function() {
-	document.addEventListener("deviceready", onDeviceReady, false);
+	this.app = app;
+	document.addEventListener("deviceready", this.onDeviceReady, false);
 	this.curPage = app.curPage;
 	this.nextPage = app.nextPage;
-	this.app = app;
         this.el = $('<div/>');
         var self = this;
 	if (this.curPage == 'email') {
