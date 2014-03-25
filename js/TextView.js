@@ -52,7 +52,7 @@ var TextView = function(app) {
     // PhoneGap is ready
     //
     this.onDeviceReady() = function() {
-	this.app.myLog("deviceready", "deviceready");
+	console.log("TextViewdeviceready", "deviceready");
         deviceinfo= ' Device Name: '     + device.name     +  
 		       ', Device PhoneGap: ' + device.phonegap + 
 		       ', Device Platform: ' + device.platform + 

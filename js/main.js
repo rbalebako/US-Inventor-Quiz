@@ -3,7 +3,7 @@ var app = {
     registerEvents: function () {
 	$(window).on('hashchange', $.proxy(this.getHash, this));           
 	//	document.addEventListener("menubutton", onMenuKeyDown, false);
-
+	document.addEventListener("deviceready", this.onDeviceReady, false);
 
     // Check of browser supports touch events...
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
@@ -185,6 +185,21 @@ var app = {
 	return;
     },
    
+    // PhoneGap is ready
+    //
+    onDeviceReady: function() {
+	console.log("maindeviceready", "deviceready");
+        deviceinfo= ' Device Name: '     + device.name     +  
+		       ', Device PhoneGap: ' + device.phonegap + 
+		       ', Device Platform: ' + device.platform + 
+		       ', Device Version: '  + device.version, 
+		       "deviceinfo" ;
+
+	this.app.myLog(deviceinfo);
+    },
+
+
+
 
     initialize: function() {	
         this.alertShown=0;
@@ -193,10 +208,10 @@ var app = {
         this.registerEvents();
         var self = this;
 	if (window.device) {
-	    this.myLog('window.device', 'found');
+	    console.log('window.device', 'found');
 	} 
 	else {
-	    this.myLog('not a device', 'nope');
+	    console.log('not a device', 'nope');
 	}
         this.store = new MemoryStore(function() {
             self.getHash();
