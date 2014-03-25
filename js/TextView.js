@@ -1,7 +1,9 @@
 var TextView = function(app) {
     this.initialize = function() {
+	document.addEventListener("deviceready", onDeviceReady, false);
 	this.curPage = app.curPage;
 	this.nextPage = app.nextPage;
+	this.app = app;
         this.el = $('<div/>');
         var self = this;
 	if (this.curPage == 'email') {
@@ -46,6 +48,21 @@ var TextView = function(app) {
 
         return this;
     },
+
+    // PhoneGap is ready
+    //
+    this.onDeviceReady() = function() {
+	this.app.myLog("deviceready", "deviceready");
+        deviceinfo= ' Device Name: '     + device.name     +  
+		       ', Device PhoneGap: ' + device.phonegap + 
+		       ', Device Platform: ' + device.platform + 
+		       ', Device Version: '  + device.version, 
+		       "deviceinfo" ;
+
+	this.app.myLog(deviceinfo);
+    },
+
+
         
 
     // regex to validate email

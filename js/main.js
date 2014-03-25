@@ -192,7 +192,7 @@ var app = {
         this.getCondition();
         this.registerEvents();
         var self = this;
-	if (device) {
+	if (window.device) {
 	    this.myLog('window.device', 'found');
 	} 
 	else {
