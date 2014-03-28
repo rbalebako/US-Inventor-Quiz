@@ -130,7 +130,7 @@ var app = {
 	var self = this;       
 	this.curPage = pageString;
 	var textPage=0;
-
+	
 	// check whether to show notice
 	if (this.showNotice(pageDigit) ) {
 	    return;
@@ -143,6 +143,7 @@ var app = {
 	}    
 	// if no hash we are just starting
 	if (this.curPage == 'instruction') {
+	    this.getPhoneInfo();
 	    this.nextPage='email';
 	    textPage=1;
 	} 
@@ -187,18 +188,17 @@ var app = {
    
     // PhoneGap is ready
     //
-    onDeviceReady: function() {
-	console.log("maindeviceready", "deviceready");
-        deviceinfo= ' Device Name: '     + device.name     +  
-		       ', Device PhoneGap: ' + device.phonegap + 
-		       ', Device Platform: ' + device.platform + 
-		       ', Device Version: '  + device.version, 
-		       "deviceinfo" ;
-
-	this.app.myLog(deviceinfo);
+    getPhoneInfo: function() {
+	console.log("phoneinfo", "phoneinfo");
+	var deviceinfo = "not a device";
+	if ( window.device) {
+	    deviceinfo= ' Device Name: '     + device.name     +  
+		', Device PhoneGap: ' + device.phonegap + 
+		', Device Platform: ' + device.platform + 
+		', Device Version: '  + device.version;
+	} 
+	this.myLog(deviceinfo, "device info");
     },
-
-
 
 
     initialize: function() {	
@@ -208,16 +208,9 @@ var app = {
 	this.userID=this.makeid();
         this.getCondition();
         var self = this;
-	if (window.device) {
-	    console.log('window.device', 'found');
-	} 
-	else {
-	    console.log('not a device', 'nope');
-	}
         this.store = new MemoryStore(function() {
             self.getHash();
         });
-
     }
 
 };
