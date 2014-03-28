@@ -3,22 +3,27 @@
   <head>
     <title>Device Properties Example</title>
 <script type="text/javascript" charset="utf-8" src="js/phonegap.js"></script>
+<script type="text/javascript" charset="utf-8" src="lib/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" charset="utf-8">
 
-    // Wait for PhoneGap to load
-    //
-    document.addEventListener("deviceready", onDeviceReady, false);
-
+  
     // PhoneGap is ready
-    //
     function onDeviceReady() {
+        console.log("we are an app");
         var element = document.getElementById('deviceProperties');
         element.innerHTML = "HI";
-    }
+
+      }
+
+      function onBodyLoad() {   
+        document.addEventListener("deviceready", onDeviceReady, false);
+      }
 
     </script>
+<!--script type="text/javascript" charset="utf-8" src="js/main.js"></script-->
   </head>
   <body>
+ <body onload="onBodyLoad()">
     <p id="deviceProperties">Loading device properties</p>
   </body>
 </html>
