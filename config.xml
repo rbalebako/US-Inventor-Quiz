@@ -2,8 +2,8 @@
 <widget xmlns       = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.rebeccahunt.historyquiz"
-        versionCode = "18"
-        version     = "1.1.18">
+        versionCode = "19"
+        version     = "1.1.19">
  
     <name>US Inventors History Quiz</name>
  

@@ -1,9 +1,9 @@
 var app = {
 
     registerEvents: function () {
+	document.addEventListener("deviceready", this.onDeviceReady, false);
 	$(window).on('hashchange', $.proxy(this.getHash, this));           
 	//	document.addEventListener("menubutton", onMenuKeyDown, false);
-	//	document.addEventListener("deviceready", this.onDeviceReady, false);
 
     // Check of browser supports touch events...
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
@@ -203,10 +203,10 @@ var app = {
 
     initialize: function() {	
 	console.log("initilize called");
+        this.registerEvents();
         this.alertShown=0;
 	this.userID=this.makeid();
         this.getCondition();
-        this.registerEvents();
         var self = this;
 	if (window.device) {
 	    console.log('window.device', 'found');
