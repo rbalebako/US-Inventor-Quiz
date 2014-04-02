@@ -192,7 +192,7 @@ var app = {
 	console.log("phoneinfo", "phoneinfo");
 	var deviceinfo = "not a device";
 	if ( window.device) {
-	    deviceinfo= ' Device Name: '     + device.name     +  
+	    deviceinfo= ' Device Name: '     + device.model     +  
 		', Device PhoneGap: ' + device.phonegap + 
 		', Device Platform: ' + device.platform + 
 		', Device Version: '  + device.version;
