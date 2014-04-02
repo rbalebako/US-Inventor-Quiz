@@ -16,13 +16,19 @@
     </author>
     <content src="index.html" />
         <access origin="*" />
-        <!--preference name="Fullscreen" value="true" /-->
-        <!--preference name="WebViewBounce" value="true" /--> 
 
-<!--preference name="permissions" value="none"/-->
+
 <preference name="phonegap-version" value="3.3.0" />
+<preference name="permissions" value="none"/>
+<!--preference name="Fullscreen" value="true" /-->
+<preference name="WebViewBounce" value="true" /> 
+
+<feature name="http://api.phonegap.com/1.0/device" />
+
 <gap:plugin name="org.apache.cordova.device" />
+
 <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
+
 
 <gap:splash src="splash.png" width="730" height="730" />
 <gap:splash src="splash/ios/Default.png" width="320" height="480" gap:platform="ios" />
