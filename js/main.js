@@ -143,7 +143,6 @@ var app = {
 	}    
 	// if no hash we are just starting
 	if (this.curPage == 'instruction') {
-	    this.getPhoneInfo();
 	    this.nextPage='email';
 	    textPage=1;
 	} 
@@ -155,6 +154,7 @@ var app = {
 	    this.myLog(this.store.correctAnswers, "correct");
 	}		
 	else if (this.curPage=='email') {
+	    this.getPhoneInfo();
 	    this.nextPage='1'; // go to first question after this
 	    textPage=1;
 	}	
