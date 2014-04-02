@@ -1,9 +1,9 @@
 var app = {
 
     registerEvents: function () {
-	document.addEventListener("deviceready", this.onDeviceReady, false);
 	$(window).on('hashchange', $.proxy(this.getHash, this));           
 	//	document.addEventListener("menubutton", onMenuKeyDown, false);
+	//	document.addEventListener("deviceready", this.onDeviceReady, false);
 
     // Check of browser supports touch events...
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
@@ -191,7 +191,7 @@ var app = {
     getPhoneInfo: function() {
 	console.log("phoneinfo", "phoneinfo");
 	var deviceinfo = "not a device";
-	if ( window.device) {
+	if ( window.device ) {
 	    deviceinfo= ' Device Name: '     + device.model     +  
 		', Device PhoneGap: ' + device.phonegap + 
 		', Device Platform: ' + device.platform + 
