@@ -19,12 +19,12 @@
         <!--preference name="Fullscreen" value="true" /-->
         <!--preference name="WebViewBounce" value="true" /--> 
 
-<!--preference name="permissions" value="none"/-->
+<preference name="permissions" value="none"/>
 <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
 <!--feature name="http://api.phonegap.com/1.0/notification"/-->
-<feature name="Device">
+<!--feature name="Device">
     <param name="android-package" value="org.apache.cordova.device.Device" />
-</feature>
+</feature-->
 
 <gap:splash src="splash.png" width="730" height="730" />
 <gap:splash src="splash/ios/Default.png" width="320" height="480" gap:platform="ios" />
