@@ -32,7 +32,7 @@ input[type="radio"] + label {
     -moz-user-select: none;
     cursor: pointer;
     display: block;
-    font-size: 16px;
+//    font-size: 16px;
     margin: 0.5em 0;
     padding: 0.7em 1em;
     position: relative;
