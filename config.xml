@@ -2,8 +2,8 @@
 <widget xmlns       = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.rebeccahunt.historyquiz"
-        versionCode = "22"
-        version     = "1.1.22">
+        versionCode = "23"
+        version     = "1.1.23">
  
     <name>US Inventors History Quiz</name>
  
@@ -19,7 +19,9 @@
         <!--preference name="Fullscreen" value="true" /-->
         <!--preference name="WebViewBounce" value="true" /--> 
 
+<!--preference name="permissions" value="none"/-->
 <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
+<feature name="http://api.phonegap.com/1.0/notification"/>
 
 <gap:splash src="splash.png" width="730" height="730" />
 <gap:splash src="splash/ios/Default.png" width="320" height="480" gap:platform="ios" />
