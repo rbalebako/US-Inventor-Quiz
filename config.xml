@@ -20,7 +20,7 @@
         <!--preference name="WebViewBounce" value="true" /--> 
 
 <preference name="permissions" value="none"/>
-<preference name="phonegap-version" value="3.1.0" />
+<preference name="phonegap-version" value="3.3.0" />
 <gap:plugin name="org.apache.cordova.device" version="0.2.8" />
 <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
 
