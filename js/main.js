@@ -154,7 +154,7 @@ var app = {
 	    this.myLog(this.store.correctAnswers, "correct");
 	}		
 	else if (this.curPage=='email') {
-	    this.getPhoneInfo();
+	    //	    this.getPhoneInfo();
 	    this.nextPage='1'; // go to first question after this
 	    textPage=1;
 	}	
@@ -189,7 +189,6 @@ var app = {
     // PhoneGap is ready
     //
     getPhoneInfo: function() {
-	console.log("phoneinfo", "phoneinfo");
 	var deviceinfo = "not a device";
 	if ( window.device ) {
 	    deviceinfo= ' Device Name: '     + device.model     +  
