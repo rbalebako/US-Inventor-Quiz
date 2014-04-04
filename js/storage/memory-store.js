@@ -122,7 +122,7 @@ var MemoryStore = function(successCallback, errorCallback) {
         {"id": 10, "atext": "hair-growing lotion", "qid": 10, "correct":1}, 
         {"id": 1001, "atext": "the parachute", "qid": 10, "correct": 0}, 
        {"id": 1002, "atext": "bifocals", "qid": 10, "correct": 0}, 
-        {"id": 1003, "atext": "the lightening rod", "qid": 10, "correct": 0}, 
+        {"id": 1003, "atext": "the lightning rod", "qid": 10, "correct": 0}, 
         {"id": 11, "atext": "a control unit for the artificial heart pacemaker", "qid": 11, "correct":1},
         {"id": 1101, "atext": "the smallpox vaccination", "qid": 11, "correct": 0}, 
            {"id": 1102, "atext": "a glove to translate sign language into speech", "qid": 11, "correct": 0},

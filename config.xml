@@ -2,13 +2,13 @@
 <widget xmlns       = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.rebeccahunt.historyquiz"
-        versionCode = "26"
-        version     = "1.1.26">
+        versionCode = "27"
+        version     = "1.1.7">
  
     <name>US Inventors History Quiz</name>
  
     <description>
-        This quiz tests your knowledge of inventors in United State's history.  Please note: this app is part of my Ph.D. research.  You are welcome to download and play this game, but if you want to help me graduate and participate in this study, please get more information and register at: http://cups.InventorsApp.sgizmo.com/s3/
+ This quiz tests your knowledge of inventors in United State's history.  Please note: this app is part of my Ph.D. research.  You are welcome to download and play this app, but please help me graduate by participating in this study and sign up before downloading it. http://cups.InventorsApp.sgizmo.com/s3/
     </description>
  
     <author href="http://saucers.cups.cs.cmu.edu/inventorsapp/index.html" email="balebako@cmu.edu">
