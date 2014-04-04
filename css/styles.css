@@ -3,7 +3,7 @@ html {
     background-color:  #221E1D;   
     color: #E9633B; 
      font-family: Arial, Helvetica, sans-serif;
-     font-size: large;
+     font-size: 200%;
 }
 
 /*   color:  #63AA9C; greenish 
@@ -101,7 +101,7 @@ h1 {
     color: #E9633B;
     border-bottom: 1px solid #63AA9C;
     text-align: left;
-    font-size: x-large;
+    font-size: 300%;
 }
 
 .bigbutton {
