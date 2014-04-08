@@ -3,7 +3,7 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.rebeccahunt.historyquiz"
         versionCode = "27"
-        version     = "1.1.7">
+        version     = "2.0.7">
  
     <name>US Inventors History Quiz</name>
  

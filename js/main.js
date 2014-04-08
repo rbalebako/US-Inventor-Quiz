@@ -51,7 +51,7 @@ var app = {
 
     // randomly assign a condition
     getCondition: function(){
-        var min =1;
+	var min =1;
         var max=3;       
 	this.condition = Math.floor(Math.random() * (max - min + 1) + min);
         this.myLog(this.condition, "condition");
@@ -59,6 +59,9 @@ var app = {
     
     // if we are at beginning middle or end, check whether they should get a privacy notification based on their condition
     showNotice: function(pageDigit) {
+	if (this.condition==0) {
+	    return 0;
+	}
         if (this.alertShown>0) {
             return 0;
         }
