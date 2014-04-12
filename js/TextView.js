@@ -34,7 +34,7 @@ var TextView = function(app) {
         this.content = this.el.find("#content");
 
 	if (this.curPage == 'instruction') {
-	    contentHTML = '<p>You are about to show off how much you know about inventors in US History! You will read a mini biography of an inventor, and then select what their invention was.  You can use your knowledge of the inventor, of of history in general, to make your selection.</p><p>Good Luck</p> <a href="#qid/'+this.nextPage+ '"  id="nextbutton" class="halfbutton">Continue</a>';
+	    contentHTML = '<p>You are about to show off how much you know about inventors in US History! You will read a mini biography of an inventor, and then select what their invention was.  You can use your knowledge of the inventor, or of history in general, to make your selection.</p><p>Good Luck</p> <a href="#qid/'+this.nextPage+ '"  id="nextbutton" class="halfbutton">Continue</a>';
 	} 
 	else if (this.curPage == 'email') {
 	    contentHTML = '<p>Before we begin, please enter your email.</p><input type="text" name="emailid" id="emailid"/><div id="responsebox"><div id="response"></div><a href="#qid/'+this.nextPage+ '" id="emailbutton" class="bigbutton hidebutton">Continue</a>';
