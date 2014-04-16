@@ -5,6 +5,11 @@ var app = {
 	//	document.addEventListener("menubutton", onMenuKeyDown, false);
 	//	document.addEventListener("deviceready", this.onDeviceReady, false);
 
+	document.addEventListener("backbutton", function(e){
+		e.preventDefault();
+		navigator.app.exitApp();
+	     }, false);
+
     // Check of browser supports touch events...
 	if (document.documentElement.hasOwnProperty('ontouchstart')) {
 	    // ... if yes: register touch event listener to change the "selected" state of the item
