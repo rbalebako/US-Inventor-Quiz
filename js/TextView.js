@@ -42,6 +42,8 @@ var TextView = function(app) {
 	else if (this.curPage == 'thankyou') {
 	    this.correctText = app.correctText;
 	    contentHTML = '<p>You got '+this.correctText +' questions correct.</p><p>Tomorrow you will recieve an email with a link to a short survey about this app.  To complete this study and receive payment, you must fill out the survey within one day of receiving the email, so fill the survey out as soon as possible.  Thank you! </p>';
+	    this.footer = this.el.find("#footer");
+	    this.footer.html('<a href="http://saucers.cups.cs.cmu.edu/inventorsapp/index.html">About</a>');
 	}
 		this.content.html(contentHTML);
 	//	self.contentHTML = contentHTML;
