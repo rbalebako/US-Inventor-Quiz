@@ -90,7 +90,7 @@ var MemoryStore = function(successCallback, errorCallback) {
         {"id": 102, "atext": "self-cleaning windows", "qid": 1, "correct": 0},   
         {"id": 103, "atext": "a system for bottling beer", "qid": 1, "correct": 0},   
         {"id": 2, "atext": "a system to determine how close 2 trains are", "qid": 2, "correct":1},        
-        {"id": 201, "atext": "the stethocope", "qid": 2, "correct": 0}, 
+        {"id": 201, "atext": "the stethoscope", "qid": 2, "correct": 0}, 
         {"id": 202, "atext": "the first computer compiler", "qid": 2, "correct": 0},  
         {"id": 203, "atext": "the iPhone", "qid": 2, "correct": 0},  
         {"id": 3, "atext": "the carbon filament component of the light bulb", "qid": 3, "correct":1},   
