@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns       = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "com.rebeccahunt.historyquiz0"
+        id          = "com.rebeccahunt.historyquiz"
         versionCode = "30"
         version     = "1.2.4">
  
