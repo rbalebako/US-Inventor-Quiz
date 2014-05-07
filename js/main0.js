@@ -165,7 +165,7 @@ var app = {
 	else if (this.curPage=='question') {
 	    this.curPage=pageDigit;
 	    this.nextPage = this.curPage + 1; // add one to symbolize next page
-	    //	    this.myLog("on question " + this.curPage + " of "  + this.store.totalQuestions(), "questionMatch" );         
+	    this.myLog(this.curPage, "currentPage" );         
 	    if (this.curPage>= this.store.totalQuestions()) {
 		// at the end of the questions
 		this.nextPage='thankyou';
